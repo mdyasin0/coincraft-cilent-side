@@ -1,15 +1,69 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../Authprovider/Firebase_context";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useNavigate } from "react-router";
+
 
 const Login = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
-const googleSubmit =(e)=>{
-  e.prevendefault()
-}
-  const onSubmit = data => {
-    console.log(data);
-    // Implement login logic here
+   const { signIn ,googleSignIn } = useContext(AuthContext);
+const googleSubmit = async (e) => {
+  
+    e.preventDefault();
+
+    try {
+      // Firebase থেকে googleSignIn কল করো (context থেকে)
+      const result = await googleSignIn();
+      const user = result.user;
+
+      const saveUser = {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        role: "worker", // default role
+      };
+
+      // তোমার সার্ভার URL ঠিক করে বসাও
+      const res = await axios.post("http://localhost:5000/google-signin", saveUser);
+
+      if (res.data.insertedId || res.data.user) {
+        Swal.fire("Success", "User signed in and saved!", "success");
+       
+        navigate("/dashboard"); 
+      } else {
+        Swal.fire("Error", "Something went wrong!", "error");
+      }
+    } catch (error) {
+      console.error("Google Sign-In Failed:", error);
+      Swal.fire("Error", "Google Sign-In failed!", "error");
+    }
   };
+ const onSubmit = async (data) => {
+  const { email, password } = data;
+
+  try {
+    await signIn(email, password);
+    Swal.fire("Success", "Login successful!", "success");
+    // এখানে তুমি রিডাইরেক্ট বা অন্য কাজ করতে পারো
+  } catch (error) {
+    console.error(error);
+    let message = "Something went wrong!";
+
+    if (error.code === "auth/invalid-credential") {
+      message = "User not found. Please register first.";
+    } else if (error.code === "auth/wrong-password") {
+      message = "Incorrect password. Try again.";
+    } else if (error.code === "auth/invalid-email") {
+      message = "Invalid email address.";
+    }
+
+    Swal.fire("Error", message, "error");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] px-4">
@@ -46,7 +100,7 @@ const googleSubmit =(e)=>{
 
         <div className="text-center my-4">— or —</div>
 
-        <button onSubmit={googleSubmit} className="flex items-center justify-center gap-2 w-full bg-white border hover:bg-gray-100 text-[#0f172a] py-2 rounded-md">
+        <button onClick={googleSubmit} className="flex items-center justify-center gap-2 w-full bg-white border hover:bg-gray-100 text-[#0f172a] py-2 rounded-md">
           <FaGoogle /> Sign in with Google
         </button>
 

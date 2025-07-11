@@ -1,12 +1,18 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Authprovider/Firebase_context";
+import {  updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router";
+import { auth } from "../Firebase/firebase.config";
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors }, watch ,  reset} = useForm();
-
+   const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors },   reset} = useForm();
+  const { createUser  } = useContext(AuthContext);
  const onSubmit = async (data) => {
-  const imageFile = data.photo[0]; 
+  const imageFile = data.photo[0];
 
   const formData = new FormData();
   formData.append("image", imageFile);
@@ -16,14 +22,21 @@ const Register = () => {
     const imgbbRes = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, formData);
 
     const photoURL = imgbbRes.data.data.url;
-
-    // ✅ Register user after photo is uploaded
     const { name, email, password, role } = data;
 
+    // ✅ Step 1: Register user to Firebase
+    await createUser(email, password);
+   
+    await updateProfile(auth.currentUser, {
+  displayName: name,
+  photoURL: photoURL
+});
+
+    // ✅ Step 2: Save user data to your server (MongoDB)
     const userData = {
       name,
       email,
-      password,
+      password,  // optional: you may skip sending password to server
       photoURL,
       role,
     };
@@ -32,6 +45,7 @@ const Register = () => {
 
     if (res.data.insertedId) {
       Swal.fire("Success", "Registration successful!", "success");
+      navigate("/dashboard"); 
       reset();
     } else {
       Swal.fire("Error", "Registration failed!", "error");
@@ -39,7 +53,9 @@ const Register = () => {
 
   } catch (error) {
     console.error(error);
-    if (error.response && error.response.status === 400) {
+    if (error.code === 'auth/email-already-in-use') {
+      Swal.fire("Error", "Email already exists in Firebase!", "error");
+    } else if (error.response && error.response.status === 400) {
       Swal.fire("Error", error.response.data.message, "error");
     } else {
       Swal.fire("Error", "Something went wrong!", "error");

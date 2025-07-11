@@ -6,6 +6,7 @@ import App from "../App";
 import Home from "../page/Home";
 import Login from "../page/Login";
 import Register from "../page/Register";
+import Dashboard from "../page/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "/home",
         Component: Home,
+      },
+      {
+            path:"/dashboard",
+            Component: Dashboard,
       },
       {
         path: "/login",
