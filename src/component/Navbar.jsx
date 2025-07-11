@@ -7,12 +7,12 @@ const Navbar = () => {
       <nav className=" py-3 max-w-6xl mx-auto  flex items-center  justify-between">
         <div className="flex items-center gap-3">
           <div>
-            <Link>
+            <Link to="/home">
               <img className="w-15" src="/favicon.png" alt="" />
             </Link>
           </div>
           <div>
-            <Link>
+            <Link to="/home">
               <h1 className="text-[#facc15] transition duration-300 text-xl font-bold">
                 CoinCrafter
               </h1>
@@ -37,15 +37,15 @@ const Navbar = () => {
             />
           </NavLink>
           <NavLink className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1]  px-4 py-2 rounded-md">
-            Logout{" "}
+            Logout
           </NavLink>
-          <NavLink className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1]  px-4 py-2 rounded-md">
+          <NavLink to="https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-mdyasin0" className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1]  px-4 py-2 rounded-md">
             Join as Developer
           </NavLink>
-          <NavLink className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1]  px-4 py-2 rounded-md">
+          <NavLink to='/login' className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1]  px-4 py-2 rounded-md">
             Login
           </NavLink>
-          <NavLink className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1]  px-4 py-2 rounded-md">
+          <NavLink to="/register" className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1]  px-4 py-2 rounded-md">
             Register
           </NavLink>
         </div>
