@@ -169,6 +169,7 @@ const handleAddTask = async (e) => {
       </label>
       <input
         type="number"
+        
         name="payable_amount"
         id="payable_amount"
         placeholder="Payable Amount"
