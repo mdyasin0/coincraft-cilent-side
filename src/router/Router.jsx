@@ -13,6 +13,7 @@ import Tasksreview from "../DashboardPage/Taskslist/Tasksreview";
 import MyTaskList from "../DashboardPage/Mytasks";
 import Updatetask from "../DashboardPage/Updatetask";
 import ManageUsers from "../DashboardPage/ManageUsers";
+import ManageTasks from "../DashboardPage/ManageTasks";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path:"/dashboard/manageusers",
         Component: ManageUsers,
+      },
+      {
+        path: "/dashboard/managetasks" ,
+        Component : ManageTasks,
       }
     ],
   },
