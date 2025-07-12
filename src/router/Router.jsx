@@ -10,6 +10,7 @@ import Register from "../page/Register";
 import AddTask from "../DashboardPage/AddNewTasks";
 import Dashboard from "../page/Dashboard";
 import Tasksreview from "../DashboardPage/Taskslist/Tasksreview";
+import MyTaskList from "../DashboardPage/Mytasks";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
         path: "/dashboard/tasksreview",
         Component: Tasksreview,
       },
+      {
+        path:"/dashboard/mytasklist" ,
+        Component: MyTaskList,
+      }
     ],
   },
 ]);

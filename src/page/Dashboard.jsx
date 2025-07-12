@@ -61,7 +61,7 @@ const Dashboard = () => {
             <NavLink to="/dashboard/addtask"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><RiPlayListAddLine/>Add new Tasks</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaUsersCog/>Manage Users</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BiSend/>My Submissions</NavLink>
-            <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BsClipboardCheck/>My Task’s</NavLink>
+            <NavLink to="/dashboard/mytasklist"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BsClipboardCheck/>My Task’s</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdOutlineManageAccounts/>Manage Task</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><HiOutlineCurrencyDollar/>Withdrawals</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaCoins/>Purchase Coin</NavLink>
