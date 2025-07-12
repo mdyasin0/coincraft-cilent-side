@@ -9,6 +9,7 @@ import Register from "../page/Register";
 
 import AddTask from "../DashboardPage/AddNewTasks";
 import Dashboard from "../page/Dashboard";
+import Tasksreview from "../DashboardPage/Taskslist/Tasksreview";
 
 export const router = createBrowserRouter([
   {
@@ -28,22 +29,21 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
-      
       },
-      // {
-      //   path:"/addtask",
-      //   Component: AddTask,
-      // }
     ],
   },
   {
-            path:"/dashboard",
-            Component: Dashboard,
-            children:[
-               {
-        path:"/dashboard/addtask",
+    path: "/dashboard",
+    Component: Dashboard,
+    children: [
+      {
+        path: "/dashboard/addtask",
         Component: AddTask,
-      }
-            ]
-      },          
+      },
+      {
+        path: "/dashboard/tasksreview",
+        Component: Tasksreview,
+      },
+    ],
+  },
 ]);

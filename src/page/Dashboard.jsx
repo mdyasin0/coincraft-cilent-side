@@ -57,7 +57,7 @@ const Dashboard = () => {
        <div className="bg-[#0f172a] w-3/12 h-full overflow-y-auto">
          <div>
             <NavLink to="/"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><AiFillHome/>Home</NavLink>
-            <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdTask/>TaskList</NavLink>
+            <NavLink to="/dashboard/tasksreview" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdTask/>TaskList</NavLink>
             <NavLink to="/dashboard/addtask"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><RiPlayListAddLine/>Add new Tasks</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaUsersCog/>Manage Users</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BiSend/>My Submissions</NavLink>
