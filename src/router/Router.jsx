@@ -20,17 +20,22 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-            path:"/dashboard",
-            Component: Dashboard,
-      },
-      {
         path: "/login",
         Component: Login,
       },
       {
         path: "/register",
         Component: Register,
+        children: [
+          {
+            
+          }
+        ]
       },
     ],
   },
+  {
+            path:"/dashboard",
+            Component: Dashboard,
+      },
 ]);
