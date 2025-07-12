@@ -59,7 +59,7 @@ const MyTaskList = () => {
 
   const handleUpdate = (task) => {
     // Navigate to update page with task ID
-    window.location.href = `/update-task/${task._id}`;
+    window.location.href = `/dashboard/update-task/${task._id}`;
   };
 
   return (

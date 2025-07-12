@@ -14,7 +14,7 @@ const Navbar = () => {
         .get(`http://localhost:5000/user?email=${user.email}`)
         .then((res) => {
           setUserData(res.data); 
-          console.log(res.data);
+          console.log("navbar data",res.data);
         })
         .catch((err) => console.error("Failed to load user", err));
     }

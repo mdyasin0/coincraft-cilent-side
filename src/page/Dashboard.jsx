@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Footer from "../component/Footer";
 import { Link, NavLink, Outlet } from "react-router";
@@ -9,8 +9,23 @@ import { FaCoins, FaUsersCog } from "react-icons/fa";
 import { BiSend } from "react-icons/bi";
 import { BsClipboardCheck } from "react-icons/bs";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
+import { AuthContext } from "../Authprovider/Firebase_context";
+import axios from "axios";
 
 const Dashboard = () => {
+   const {  user } = useContext(AuthContext);
+    const [userData, setUserData] = useState(null);
+    useEffect(() => {
+      if (user?.email) {
+        axios
+          .get(`http://localhost:5000/user?email=${user.email}`)
+          .then((res) => {
+            setUserData(res.data); 
+            console.log("navbar data",res.data);
+          })
+          .catch((err) => console.error("Failed to load user", err));
+      }
+    }, [user]);
   return (
     <div>
       <div className="bg-[#0284c7]"> 
@@ -29,22 +44,34 @@ const Dashboard = () => {
                     </Link>
                   </div>
                 </div></div>
-        <div className="flex items-center gap-5">
-          <div className="text-[#facc15]">
-            <div className="flex  gap-5 items-center">
-              <p>Available coin</p>
-              <p>userImage </p>
-            </div>
-            <div className="flex gap-5 items-center">
-              <p>userRole</p>
-              <p>userName</p>
-            </div>
+        <div className="flex items-center gap-10">
+          <div className="text-white">
+           {userData ? (
+  <div >
+    <div className="flex items-center gap-5">
+<img
+      src={userData?.photoURL || "/favicon.png"}
+      alt={userData?.name || "User"}
+      className="w-10 h-10 rounded-full"
+    />
+ <p>Name: {userData?.name}</p>
+    </div>
+    <div className=" border-amber-300 border my-2"></div>
+    <div className="flex items-center gap-5">
+      <p>Role: {userData?.role}</p>
+     
+       <p className="flex gap-2 items-center"><img className="w-6" src="src/assets/coin.png" alt="" /><p className="font-bold">{userData?.coin}</p></p>
+    </div>
+  </div>
+) : (
+  <p className="text-white">Loading user...</p>
+)}
           </div>
           <div className="text-white hover:text-[#facc15]">
             <div className="tooltip" data-tip="Notification">
               <div className="indicator">
                 <span className="indicator-item status status-success"></span>
-                <div className="  ">
+                <div className=" bg-yellow-300 text-black text-lg p-2 rounded-full ">
                   <IoMdNotificationsOutline />
                 </div>
               </div>

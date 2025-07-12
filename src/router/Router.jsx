@@ -11,6 +11,7 @@ import AddTask from "../DashboardPage/AddNewTasks";
 import Dashboard from "../page/Dashboard";
 import Tasksreview from "../DashboardPage/Taskslist/Tasksreview";
 import MyTaskList from "../DashboardPage/Mytasks";
+import Updatetask from "../DashboardPage/Updatetask";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path:"/dashboard/mytasklist" ,
         Component: MyTaskList,
+      },
+      {
+        path:"/dashboard/update-task/:id",
+        Component: Updatetask,
       }
     ],
   },
