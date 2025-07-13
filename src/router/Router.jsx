@@ -18,6 +18,8 @@ import PurchaseCoins from "../DashboardPage/PurchaseCoins";
 import PaymentHistory from "../DashboardPage/PaymentHistory";
 import TaskListForWorker from "../DashboardPage/TasklistForWorker";
 import TaskDetails from "../DashboardPage/TaskDetails";
+import MySubmission from "../DashboardPage/MySubmission";
+import Withdrawals from "../DashboardPage/Withdrawals";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +87,14 @@ export const router = createBrowserRouter([
         path: "/dashboard/task-details/:id",
         Component: TaskDetails,
       },
+      {
+        path:"/dashboard/mysubmission" ,
+        Component: MySubmission ,
+      },{
+        path: "/dashboard/withdrawals" ,
+        Component : Withdrawals ,
+        
+      }
     ],
   },
 ]);
