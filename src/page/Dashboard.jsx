@@ -92,7 +92,7 @@ const Dashboard = () => {
             <NavLink  to="/dashboard/managetasks"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdOutlineManageAccounts/>Manage Task</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><HiOutlineCurrencyDollar/>Withdrawals</NavLink>
             <NavLink to="/dashboard/purchasecoins"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaCoins/>Purchase Coin</NavLink>
-            <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><AiOutlineHistory/>Payment history</NavLink>
+            <NavLink to="/dashboard/paymenthistory"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><AiOutlineHistory/>Payment history</NavLink>
          </div>
        </div>
        <div className="bg-[#f8fafc] w-9/12 h-full overflow-y-auto py-10">

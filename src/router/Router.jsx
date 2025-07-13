@@ -15,6 +15,9 @@ import Updatetask from "../DashboardPage/Updatetask";
 import ManageUsers from "../DashboardPage/ManageUsers";
 import ManageTasks from "../DashboardPage/ManageTasks";
 import PurchaseCoins from "../DashboardPage/PurchaseCoins";
+import PaymentHistory from "../DashboardPage/PaymentHistory";
+import TaskListForWorker from "../DashboardPage/TasklistForWorker";
+import TaskDetails from "../DashboardPage/TaskDetails";
 
 export const router = createBrowserRouter([
   {
@@ -50,25 +53,38 @@ export const router = createBrowserRouter([
         Component: Tasksreview,
       },
       {
-        path:"/dashboard/mytasklist" ,
+        path: "/dashboard/mytasklist",
         Component: MyTaskList,
       },
       {
-        path:"/dashboard/update-task/:id",
+        path: "/dashboard/update-task/:id",
         Component: Updatetask,
       },
       {
-        path:"/dashboard/manageusers",
+        path: "/dashboard/manageusers",
         Component: ManageUsers,
       },
       {
-        path: "/dashboard/managetasks" ,
-        Component : ManageTasks,
+        path: "/dashboard/managetasks",
+        Component: ManageTasks,
       },
       {
-        path: "/dashboard/purchasecoins" ,
-        Component: PurchaseCoins ,
-      }
+        path: "/dashboard/purchasecoins",
+        Component: PurchaseCoins,
+      },
+      {
+        path: "/dashboard/paymenthistory",
+        Component: PaymentHistory,
+      },
+
+      {
+        path: "/dashboard/tasklistforworker",
+        Component: TaskListForWorker,
+      },
+      {
+        path: "/dashboard/task-details/:id",
+        Component: TaskDetails,
+      },
     ],
   },
 ]);
