@@ -91,7 +91,7 @@ const Dashboard = () => {
             <NavLink to="/dashboard/mytasklist"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BsClipboardCheck/>My Task’s</NavLink>
             <NavLink  to="/dashboard/managetasks"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdOutlineManageAccounts/>Manage Task</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><HiOutlineCurrencyDollar/>Withdrawals</NavLink>
-            <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaCoins/>Purchase Coin</NavLink>
+            <NavLink to="/dashboard/purchasecoins"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaCoins/>Purchase Coin</NavLink>
             <NavLink  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><AiOutlineHistory/>Payment history</NavLink>
          </div>
        </div>

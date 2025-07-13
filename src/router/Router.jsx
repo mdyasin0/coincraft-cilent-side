@@ -14,6 +14,7 @@ import MyTaskList from "../DashboardPage/Mytasks";
 import Updatetask from "../DashboardPage/Updatetask";
 import ManageUsers from "../DashboardPage/ManageUsers";
 import ManageTasks from "../DashboardPage/ManageTasks";
+import PurchaseCoins from "../DashboardPage/PurchaseCoins";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/managetasks" ,
         Component : ManageTasks,
+      },
+      {
+        path: "/dashboard/purchasecoins" ,
+        Component: PurchaseCoins ,
       }
     ],
   },
