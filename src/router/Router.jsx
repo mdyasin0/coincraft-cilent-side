@@ -22,6 +22,7 @@ import Withdrawals from "../DashboardPage/Withdrawals";
 import Taskreviewforadmin from "../DashboardPage/Taskslist/Taskreviewforadmin";
 import Taskreviewforworker from "../DashboardPage/Taskslist/Taskreviewforworker";
 import Tasksreview from "../DashboardPage/Taskslist/Tasksreviewforbuyer";
+import PrivateRoute from "../component/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -46,66 +47,126 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    Component: Dashboard,
+
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard/addtask",
-        Component: AddTask,
+        element: (
+          <PrivateRoute>
+            <AddTask />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/tasksreview",
-        Component: Tasksreview,
+        element: (
+          <PrivateRoute>
+            <Tasksreview />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/mytasklist",
-        Component: MyTaskList,
+        element: (
+          <PrivateRoute>
+            <MyTaskList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/update-task/:id",
-        Component: Updatetask,
+        element: (
+          <PrivateRoute>
+            <Updatetask />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/manageusers",
-        Component: ManageUsers,
+        element: (
+          <PrivateRoute>
+            <ManageUsers />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/managetasks",
-        Component: ManageTasks,
+        element: (
+          <PrivateRoute>
+            <ManageTasks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/purchasecoins",
-        Component: PurchaseCoins,
+        element: (
+          <PrivateRoute>
+            <PurchaseCoins />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/paymenthistory",
-        Component: PaymentHistory,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "/dashboard/tasklistforworker",
-        Component: TaskListForWorker,
+        element: (
+          <PrivateRoute>
+            <TaskListForWorker />
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/dashboard/taskreviewforadmin",
-        Component: Taskreviewforadmin ,
+        path: "/dashboard/taskreviewforadmin",
+        element: (
+          <PrivateRoute>
+            <Taskreviewforadmin />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/dashboard/taskreviewforworker" ,
-        Component: Taskreviewforworker ,
-      }
-      ,
+        path: "/dashboard/taskreviewforworker",
+        element: (
+          <PrivateRoute>
+            <Taskreviewforworker />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/dashboard/task-details/:id",
-        Component: TaskDetails,
+        element: (
+          <PrivateRoute>
+            <TaskDetails />
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/dashboard/mysubmission" ,
-        Component: MySubmission ,
-      },{
-        path: "/dashboard/withdrawals" ,
-        Component : Withdrawals ,
-        
-      }
+        path: "/dashboard/mysubmission",
+        element: (
+          <PrivateRoute>
+            <MySubmission />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/withdrawals",
+        element: (
+          <PrivateRoute>
+            <Withdrawals />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

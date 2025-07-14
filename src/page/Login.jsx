@@ -4,11 +4,15 @@ import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../Authprovider/Firebase_context";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 
 const Login = () => {
-  const navigate = useNavigate();
+  const location = useLocation();
+const navigate = useNavigate();
+
+const from = location.state?.from?.pathname || "/";
+  
   const { register, handleSubmit, formState: { errors } } = useForm();
    const { signIn ,googleSignIn } = useContext(AuthContext);
 const googleSubmit = async (e) => {
@@ -16,7 +20,7 @@ const googleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Firebase থেকে googleSignIn কল করো (context থেকে)
+     
       const result = await googleSignIn();
       const user = result.user;
 
@@ -27,7 +31,7 @@ const googleSubmit = async (e) => {
         role: "worker", // default role
       };
 
-      // তোমার সার্ভার URL ঠিক করে বসাও
+      
       const res = await axios.post("http://localhost:5000/google-signin", saveUser);
 
       if (res.data.insertedId || res.data.user) {
@@ -48,7 +52,7 @@ const googleSubmit = async (e) => {
   try {
     await signIn(email, password);
     Swal.fire("Success", "Login successful!", "success");
-    // এখানে তুমি রিডাইরেক্ট বা অন্য কাজ করতে পারো
+     navigate(from, { replace: true });
   } catch (error) {
     console.error(error);
     let message = "Something went wrong!";
