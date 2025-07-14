@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
    
-    fetch("/worker.json")
+    fetch("http://localhost:5000/users/worker")
       .then((res) => res.json())
       .then((data) => {
        
@@ -111,12 +111,12 @@ const testimonials = [
           {workers.map((worker) => (
             <div
               key={worker.id}
-              className="bg-white shadow-md rounded-lg p-4 hover:shadow-xl hover:scale-[1.02] transition duration-300"
+              className="bg-white shadow-md  rounded-lg p-4 hover:shadow-xl hover:scale-[1.02] transition duration-300"
             >
               <img
-                src={worker.photo}
+                src={worker.photoURL}
                 alt={worker.name}
-                className="w-full h-48 object-cover rounded-md mb-4"
+                className="w-full h-64 object-cover-cover  rounded-md p-7"
               />
               <h3 className="text-lg font-semibold text-[#0f172a] mb-1">
                 {worker.name}
@@ -124,7 +124,7 @@ const testimonials = [
               <p className="text-[#475569]">
                 Coins:{" "}
                 <span className="text-[#facc15] font-bold">
-                  {worker.availableCoin}
+                  {worker.coin}
                 </span>
               </p>
             </div>

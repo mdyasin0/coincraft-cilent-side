@@ -43,7 +43,7 @@ const AddTask = () => {
       const { data: buyer } = await axios.get(`http://localhost:5000/user/${user.email}`);
       if (buyer.coin < totalAmount) {
         Swal.fire('Not enough coins', 'Please purchase coins first.', 'warning');
-        return navigate('/dashboard/purchase-coin');
+        return navigate('/dashboard/purchasecoins');
       }
 
       const taskData = {
@@ -65,6 +65,7 @@ const AddTask = () => {
 
       Swal.fire('Success!', 'Task added successfully.', 'success');
       form.reset();
+      navigate("/dashboard/mytasklist");
       setImage(null);
     } catch (err) {
       console.error(err);

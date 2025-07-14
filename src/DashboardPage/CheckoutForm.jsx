@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { AuthContext } from "../Authprovider/Firebase_context";
+import { useNavigate } from "react-router";
 
 const CheckoutForm = ({ selectedAmount }) => {
   const stripe = useStripe();
@@ -10,6 +11,7 @@ const CheckoutForm = ({ selectedAmount }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -73,6 +75,7 @@ const CheckoutForm = ({ selectedAmount }) => {
           title: "Payment Successful!",
           text: `${selectedAmount.coins} coins added to your account.`,
         });
+navigate("/dashboard/addtask"); 
       }
     } catch (err) {
       console.error("Payment error", err);

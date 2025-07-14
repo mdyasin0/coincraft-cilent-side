@@ -153,7 +153,11 @@ const Dashboard = () => {
           <div className="space-y-2">
             <NavLink
               to="/"
-              className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+               className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
               onClick={() => setSidebarOpen(false)} // close drawer on link click
             >
               <AiFillHome />
@@ -164,7 +168,11 @@ const Dashboard = () => {
               <>
                 <NavLink
                   to="/dashboard/taskreviewforadmin"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                   className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <MdTask />
@@ -173,7 +181,11 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/manageusers"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                  className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <FaUsersCog />
@@ -182,7 +194,11 @@ const Dashboard = () => {
 
                 <NavLink
                   to="/dashboard/managetasks"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                 className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <MdOutlineManageAccounts />
@@ -194,23 +210,36 @@ const Dashboard = () => {
               <>
                 <NavLink
                   to="/dashboard/taskreviewforworker"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                   className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <MdTask />
                   TaskList
                 </NavLink>
-                <NavLink
-                  to="/dashboard/mysubmission"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <BiSend />
-                  My Submissions
-                </NavLink>
+              <NavLink
+  to="/dashboard/mysubmission"
+  onClick={() => setSidebarOpen(false)}
+  className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
+>
+  <BiSend />
+  My Submissions
+</NavLink>
+
                 <NavLink
                   to="/dashboard/withdrawals"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                   className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <HiOutlineCurrencyDollar />
@@ -222,7 +251,11 @@ const Dashboard = () => {
               <>
                 <NavLink
                   to="/dashboard/tasksreview"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                 className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <MdTask />
@@ -230,7 +263,11 @@ const Dashboard = () => {
                 </NavLink>
                 <NavLink
                   to="/dashboard/addtask"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                 className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <RiPlayListAddLine />
@@ -238,7 +275,11 @@ const Dashboard = () => {
                 </NavLink>
                 <NavLink
                   to="/dashboard/mytasklist"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                   className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <BsClipboardCheck />
@@ -246,7 +287,11 @@ const Dashboard = () => {
                 </NavLink>
                 <NavLink
                   to="/dashboard/purchasecoins"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                  className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <FaCoins />
@@ -254,7 +299,11 @@ const Dashboard = () => {
                 </NavLink>
                 <NavLink
                   to="/dashboard/paymenthistory"
-                  className="p-2 rounded flex items-center gap-3 hover:bg-[#0284c7]"
+                  className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
                   onClick={() => setSidebarOpen(false)}
                 >
                   <AiOutlineHistory />

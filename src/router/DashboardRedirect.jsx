@@ -1,4 +1,3 @@
-// src/component/DashboardRedirect.jsx
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
@@ -6,11 +5,11 @@ import useUserRole from "../Hook/UserRole";
 
 const DashboardRedirect = () => {
   const navigate = useNavigate();
-  const { role ,loading} = useUserRole();
+  const { role, loading } = useUserRole();
 
   useEffect(() => {
     if (loading) return;
-    console.log("worker role for index route " , role);
+    console.log("worker role for index route ", role);
 
     if (role === "admin") {
       navigate("/dashboard/taskreviewforadmin");
@@ -21,10 +20,10 @@ const DashboardRedirect = () => {
     } else {
       navigate("/login");
     }
-  }, [ role , navigate , loading ]);
+  }, [role, navigate, loading]);
 
   return (
-   <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen">
       <span className="loading loading-spinner loading-xl"></span>
     </div>
   );

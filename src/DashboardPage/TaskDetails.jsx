@@ -1,5 +1,5 @@
 import{ useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Authprovider/Firebase_context";
@@ -9,6 +9,7 @@ const TaskDetails = () => {
   const { user } = useContext(AuthContext);
   const [task, setTask] = useState(null);
   const [submissionDetails, setSubmissionDetails] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:5000/tasks/${id}`).then((res) => {
@@ -35,6 +36,7 @@ console.log(user.email);
     await axios.post("http://localhost:5000/submissions", submissionData);
 
     Swal.fire("Submitted!", "Your task has been submitted for review.", "success");
+ navigate("/dashboard/taskreviewforworker"); 
     setSubmissionDetails("");
   };
 
