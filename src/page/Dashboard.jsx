@@ -11,8 +11,10 @@ import { BsClipboardCheck } from "react-icons/bs";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { AuthContext } from "../Authprovider/Firebase_context";
 import axios from "axios";
+import useUserRole from "../Hook/UserRole";
 
 const Dashboard = () => {
+  const { role, loading } = useUserRole();
    const {  user } = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
     useEffect(() => {
@@ -26,6 +28,7 @@ const Dashboard = () => {
           .catch((err) => console.error("Failed to load user", err));
       }
     }, [user]);
+    if (loading) return <p>Loading...</p>;
   return (
     <div>
       <div className="bg-[#0284c7]"> 
@@ -84,15 +87,74 @@ const Dashboard = () => {
        <div className="bg-[#0f172a] w-3/12 h-full overflow-y-auto">
          <div>
             <NavLink to="/"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><AiFillHome/>Home</NavLink>
-            <NavLink to="/dashboard/tasksreview" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdTask/>TaskList</NavLink>
+
+
+
+           
+{role === "admin" && 
+<NavLink to="/dashboard/taskreviewforadmin" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdTask/>TaskList</NavLink>
+
+
+}
+
+            
+{role === "worker" && 
+<NavLink to="/dashboard/taskreviewforworker" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdTask/>TaskList</NavLink>
+
+}
+
+
+            
+{role === "buyer" && 
+<NavLink to="/dashboard/tasksreview" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdTask/>TaskList</NavLink>
+
+}
+
+
+
+            
+            {role === "buyer" && 
             <NavLink to="/dashboard/addtask"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><RiPlayListAddLine/>Add new Tasks</NavLink>
-            <NavLink to="/dashboard/manageusers" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaUsersCog/>Manage Users</NavLink>
+            
+            }
+  {role === "admin" && 
+  <NavLink to="/dashboard/manageusers" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaUsersCog/>Manage Users</NavLink>
+  
+  
+  }
+            
+            
+            {role === "worker" && 
             <NavLink to="/dashboard/mysubmission"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BiSend/>My Submissions</NavLink>
-            <NavLink to="/dashboard/mytasklist"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BsClipboardCheck/>My Task’s</NavLink>
-            <NavLink  to="/dashboard/managetasks"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdOutlineManageAccounts/>Manage Task</NavLink>
-            <NavLink to="/dashboard/withdrawals" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><HiOutlineCurrencyDollar/>Withdrawals</NavLink>
-            <NavLink to="/dashboard/purchasecoins"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaCoins/>Purchase Coin</NavLink>
+                   }
+           
+             {role === "buyer" && 
+              <NavLink to="/dashboard/mytasklist"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><BsClipboardCheck/>My Task’s</NavLink>
+             
+             }
+
+             
+            {role === "admin" && 
+            
+             <NavLink  to="/dashboard/managetasks"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><MdOutlineManageAccounts/>Manage Task</NavLink>
+            
+            }
+           
+           
+            {role === "worker" && 
+            
+             <NavLink to="/dashboard/withdrawals" className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><HiOutlineCurrencyDollar/>Withdrawals</NavLink>
+            }
+           
+             {role === "buyer" && 
+              <NavLink to="/dashboard/purchasecoins"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><FaCoins/>Purchase Coin</NavLink>
+             
+             }
+            
+            {role === "buyer" && 
             <NavLink to="/dashboard/paymenthistory"  className="  p-2 rounded transition flex items-center gap-5 text-white hover:bg-[#0284c7] hover:text-[#f8fafc]"><AiOutlineHistory/>Payment history</NavLink>
+            
+            }
          </div>
        </div>
        <div className="bg-[#f8fafc] w-9/12 h-full overflow-y-auto py-10">
