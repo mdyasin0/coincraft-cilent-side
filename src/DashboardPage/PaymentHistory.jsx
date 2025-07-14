@@ -24,42 +24,51 @@ const PaymentHistory = () => {
   }, [user?.email]);
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <h2 className="text-2xl font-bold text-center mb-6 text-[#0f172a]">
-        Payment History
-      </h2>
+<div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+  <h2 className="text-2xl sm:text-3xl font-extrabold text-center mb-6 text-[#0f172a] tracking-wide">
+    Payment History
+  </h2>
 
-      {loading ? (
-        <p className="text-center text-gray-500">Loading payment history...</p>
-      ) : payments.length === 0 ? (
-        <p className="text-center text-gray-500">No payment history found.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="table w-full border border-gray-200">
-            <thead className="bg-gray-100">
-              <tr>
-                <th>#</th>
-                <th>Transaction ID</th>
-                <th>Amount ($)</th>
-                <th>Coins</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {payments.map((payment, index) => (
-                <tr key={payment._id} className="hover:bg-gray-50">
-                  <td>{index + 1}</td>
-                  <td className="text-sm text-blue-700">{payment.transactionId}</td>
-                  <td>${payment.amount}</td>
-                  <td>{payment.coins}</td>
-                  <td>{new Date(payment.date).toLocaleString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+  {loading ? (
+    <p className="text-center text-gray-500 italic">Loading payment history...</p>
+  ) : payments.length === 0 ? (
+    <p className="text-center text-gray-500 italic">No payment history found.</p>
+  ) : (
+    <div className="overflow-x-auto rounded-lg shadow-md">
+      <table className="min-w-full border border-gray-200 text-sm sm:text-base table-auto">
+        <thead className="bg-gray-100 text-gray-700 uppercase text-xs sm:text-sm">
+          <tr>
+            <th className="px-3 py-3 text-left whitespace-nowrap">#</th>
+            <th className="px-3 py-3 text-left whitespace-nowrap">Transaction ID</th>
+            <th className="px-3 py-3 text-left whitespace-nowrap">Amount ($)</th>
+            <th className="px-3 py-3 text-left whitespace-nowrap">Coins</th>
+            <th className="px-3 py-3 text-left whitespace-nowrap">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {payments.map((payment, index) => (
+            <tr
+              key={payment._id}
+              className="hover:bg-gray-50 border-t border-gray-200 transition-colors duration-150"
+            >
+              <td className="px-3 py-2 whitespace-nowrap">{index + 1}</td>
+              <td className="px-3 py-2 text-blue-700 break-words max-w-xs">
+                {payment.transactionId}
+              </td>
+              <td className="px-3 py-2 whitespace-nowrap">${payment.amount.toFixed(2)}</td>
+              <td className="px-3 py-2 whitespace-nowrap">{payment.coins}</td>
+              <td className="px-3 py-2 whitespace-nowrap">
+                {new Date(payment.date).toLocaleString()}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  )}
+</div>
+
+
   );
 };
 

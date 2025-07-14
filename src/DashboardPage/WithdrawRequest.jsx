@@ -34,55 +34,59 @@ const WithdrawRequest = () => {
   };
 
   return (
-    <div className="p-5">
-      <h2 className="text-2xl font-bold mb-4">Pending Withdrawal Requests</h2>
+  <div className="px-4 py-6 sm:px-6 lg:px-8">
+  <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center sm:text-left">
+    Pending Withdrawal Requests
+  </h2>
 
-      {withdrawals.length === 0 ? (
-        <p className="text-gray-500">No pending requests.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full border border-gray-300">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="p-2 border">#</th>
-                <th className="p-2 border">Worker</th>
-                <th className="p-2 border">Email</th>
-                <th className="p-2 border">Coin</th>
-                <th className="p-2 border">Amount ($)</th>
-                <th className="p-2 border">Payment System</th>
-                <th className="p-2 border">Account Number</th>
-                <th className="p-2 border">Date</th>
-                <th className="p-2 border">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {withdrawals.map((item, index) => (
-                <tr key={item._id}>
-                  <td className="p-2 border">{index + 1}</td>
-                  <td className="p-2 border">{item.worker_name}</td>
-                  <td className="p-2 border">{item.worker_email}</td>
-                  <td className="p-2 border">{item.withdrawal_coin}</td>
-                  <td className="p-2 border">${item.withdrawal_amount}</td>
-                  <td className="p-2 border">{item.payment_system}</td>
-                  <td className="p-2 border">{item.account_number}</td>
-                  <td className="p-2 border">
-                    {new Date(item.withdraw_date).toLocaleString()}
-                  </td>
-                  <td className="p-2 border">
-                    <button
-                      onClick={() => handleApprove(item._id)}
-                      className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
-                    >
-                      Payment Success
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+  {withdrawals.length === 0 ? (
+    <p className="text-gray-500 text-center">No pending requests.</p>
+  ) : (
+    <div className="w-full overflow-x-auto rounded-lg shadow-md">
+      <table className="min-w-full table-auto border border-gray-200 bg-white">
+        <thead className="bg-gray-100 text-gray-700 text-xs sm:text-sm uppercase">
+          <tr>
+            <th className="px-3 py-2 border text-left">#</th>
+            <th className="px-3 py-2 border text-left">Worker</th>
+            <th className="px-3 py-2 border text-left">Email</th>
+            <th className="px-3 py-2 border text-center">Coin</th>
+            <th className="px-3 py-2 border text-center">Amount ($)</th>
+            <th className="px-3 py-2 border text-left">Payment System</th>
+            <th className="px-3 py-2 border text-left">Account Number</th>
+            <th className="px-3 py-2 border text-left">Date</th>
+            <th className="px-3 py-2 border text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody className="text-sm sm:text-base text-gray-800">
+          {withdrawals.map((item, index) => (
+            <tr key={item._id} className="hover:bg-gray-50 transition-colors">
+              <td className="px-3 py-2 border text-left">{index + 1}</td>
+              <td className="px-3 py-2 border text-left">{item.worker_name}</td>
+              <td className="px-3 py-2 border text-left">{item.worker_email}</td>
+              <td className="px-3 py-2 border text-center">{item.withdrawal_coin}</td>
+              <td className="px-3 py-2 border text-center">${item.withdrawal_amount}</td>
+              <td className="px-3 py-2 border text-left">{item.payment_system}</td>
+              <td className="px-3 py-2 border text-left break-all">{item.account_number}</td>
+              <td className="px-3 py-2 border text-left">
+                {new Date(item.withdraw_date).toLocaleString()}
+              </td>
+              <td className="px-3 py-2 border text-center">
+                <button
+                  onClick={() => handleApprove(item._id)}
+                  className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 text-xs sm:text-sm transition"
+                >
+                  Payment Success
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  )}
+</div>
+
+
   );
 };
 

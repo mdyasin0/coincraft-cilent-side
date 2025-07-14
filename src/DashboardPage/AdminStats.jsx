@@ -47,23 +47,34 @@ const AdminStats = () => {
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (
-    <div className="admin-stats p-4 border rounded shadow-md max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Admin Dashboard Stats</h2>
-      <ul className="space-y-2 text-lg">
-        <li>
-          <strong>Total Workers:</strong> {stats.totalWorkers}
-        </li>
-        <li>
-          <strong>Total Buyers:</strong> {stats.totalBuyers}
-        </li>
-        <li>
-          <strong>Total Available Coins:</strong> {stats.totalCoins.toLocaleString()}
-        </li>
-        <li>
-          <strong>Total Payments (Approved Withdrawals):</strong> ${stats.totalPayments.toFixed(2)}
-        </li>
-      </ul>
+    <div className="admin-stats w-full max-w-4xl mx-auto p-6 md:p-8 lg:p-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg">
+  <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+    Admin Dashboard Stats
+  </h2>
+  
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="bg-blue-100 dark:bg-blue-900 p-5 rounded-xl shadow">
+      <p className="text-sm font-medium text-blue-800 dark:text-blue-200">Total Workers</p>
+      <p className="text-xl font-bold text-blue-900 dark:text-blue-100">{stats.totalWorkers}</p>
     </div>
+    
+    <div className="bg-green-100 dark:bg-green-900 p-5 rounded-xl shadow">
+      <p className="text-sm font-medium text-green-800 dark:text-green-200">Total Buyers</p>
+      <p className="text-xl font-bold text-green-900 dark:text-green-100">{stats.totalBuyers}</p>
+    </div>
+    
+    <div className="bg-yellow-100 dark:bg-yellow-900 p-5 rounded-xl shadow">
+      <p className="text-sm font-medium text-yellow-800 dark:text-yellow-200">Total Available Coins</p>
+      <p className="text-xl font-bold text-yellow-900 dark:text-yellow-100">{stats.totalCoins.toLocaleString()}</p>
+    </div>
+    
+    <div className="bg-purple-100 dark:bg-purple-900 p-5 rounded-xl shadow">
+      <p className="text-sm font-medium text-purple-800 dark:text-purple-200">Total Payments (Approved Withdrawals)</p>
+      <p className="text-xl font-bold text-purple-900 dark:text-purple-100">${stats.totalPayments.toFixed(2)}</p>
+    </div>
+  </div>
+</div>
+
   );
 };
 

@@ -20,7 +20,7 @@ const MyTaskList = () => {
     if (user?.email) {
       fetchMyTasks();
     }
-  }, [user]);
+  }, );
 
  const handleDelete = async (taskId, workers, amount, status) => {
   const confirm = await Swal.fire({
@@ -63,47 +63,53 @@ const MyTaskList = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full bg-white rounded shadow">
-        <thead className="bg-[#0f172a] text-white">
-          <tr>
-            <th className="p-2">Title</th>
-            <th className="p-2">Workers</th>
-            <th className="p-2">Pay</th>
-            <th className="p-2">Completion Date</th>
-            <th className="p-2">Status</th>
-            <th className="p-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {myTasks.map((task) => (
-            <tr key={task._id} className="text-center border-b hover:bg-gray-100">
-              <td className="p-2">{task.task_title}</td>
-              <td className="p-2">{task.required_workers}</td>
-              <td className="p-2">{task.payable_amount}</td>
-              <td className="p-2">{task.completion_date}</td>
-              <td className="p-2">{task.status}</td>
-              <td className="p-2 flex gap-2 justify-center">
-                <button
-                  onClick={() => handleUpdate(task)}
-                  className="bg-[#0284c7] text-white px-3 py-1 rounded hover:bg-[#0369a1]"
-                >
-                  Update
-                </button>
-                <button
-                  onClick={() =>
-                    handleDelete(task._id, task.required_workers, task.payable_amount, task.status)
-                  }
-                  className="bg-[#dc2626] text-white px-3 py-1 rounded hover:bg-[#b91c1c]"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <div className="w-full overflow-x-auto">
+  <table className="min-w-[600px] w-full bg-white rounded shadow">
+    <thead className="bg-[#0f172a] text-white">
+      <tr>
+        <th className="p-2 text-sm text-left">Title</th>
+        <th className="p-2 text-sm text-left">Workers</th>
+        <th className="p-2 text-sm text-left">Pay</th>
+        <th className="p-2 text-sm text-left">Completion Date</th>
+        <th className="p-2 text-sm text-left">Status</th>
+        <th className="p-2 text-sm text-left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {myTasks.map((task) => (
+        <tr
+          key={task._id}
+          className="border-b hover:bg-gray-100 text-sm text-gray-700"
+        >
+          <td className="p-2">{task.task_title}</td>
+          <td className="p-2">{task.required_workers}</td>
+          <td className="p-2">{task.payable_amount}</td>
+          <td className="p-2">{task.completion_date}</td>
+          <td className="p-2">{task.status}</td>
+          <td className="p-2">
+            <div className="flex flex-wrap justify-start gap-2">
+              <button
+                onClick={() => handleUpdate(task)}
+                className="bg-[#0284c7] text-white px-3 py-1 rounded hover:bg-[#0369a1] text-sm"
+              >
+                Update
+              </button>
+              <button
+                onClick={() =>
+                  handleDelete(task._id, task.required_workers, task.payable_amount, task.status)
+                }
+                className="bg-[#dc2626] text-white px-3 py-1 rounded hover:bg-[#b91c1c] text-sm"
+              >
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
   );
 };
 

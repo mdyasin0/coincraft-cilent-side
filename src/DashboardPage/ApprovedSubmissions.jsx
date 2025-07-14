@@ -26,35 +26,48 @@ const ApprovedSubmissions = () => {
   if (loading) return <p>Loading approved submissions...</p>;
 
   return (
-    <div className="p-4 bg-white shadow rounded">
-      <h2 className="text-xl font-bold mb-4 text-gray-800">✅ Approved Submissions</h2>
-      {approvedSubmissions.length === 0 ? (
-        <p>No approved submissions found.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="min-w-full table-auto border border-gray-300">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-4 py-2 border">Task Title</th>
-                <th className="px-4 py-2 border">Payable Amount</th>
-                <th className="px-4 py-2 border">Buyer Name</th>
-                <th className="px-4 py-2 border">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {approvedSubmissions.map((submission, index) => (
-                <tr key={index} className="text-center">
-                  <td className="px-4 py-2 border">{submission.task_title}</td>
-                  <td className="px-4 py-2 border">${submission.payable_amount}</td>
-                  <td className="px-4 py-2 border">{submission.buyer_name}</td>
-                  <td className="px-4 py-2 border text-green-600 font-semibold">{submission.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+    <div className="p-4 sm:p-6 md:p-8 bg-white shadow-md rounded-xl overflow-hidden">
+  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
+    <span className="text-green-600 text-xl">✅</span>
+    Approved Submissions
+  </h2>
+
+  {approvedSubmissions.length === 0 ? (
+    <p className="text-gray-500 text-sm md:text-base">No approved submissions found.</p>
+  ) : (
+    <div className="w-full overflow-x-auto rounded-lg border border-gray-200">
+      <table className="min-w-[500px] w-full table-auto text-sm md:text-base text-gray-700">
+        <thead className="bg-gray-100 text-gray-700">
+          <tr>
+            <th className="px-4 py-3 text-left border">Task Title</th>
+            <th className="px-4 py-3 text-left border">Payable Amount</th>
+            <th className="px-4 py-3 text-left border">Buyer Name</th>
+            <th className="px-4 py-3 text-left border">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {approvedSubmissions.map((submission, index) => (
+            <tr
+              key={index}
+              className="hover:bg-gray-50 transition-all border-b last:border-b-0"
+            >
+              <td className="px-4 py-3 border whitespace-nowrap">{submission.task_title}</td>
+              <td className="px-4 py-3 border whitespace-nowrap text-green-700 font-medium">
+                ${submission.payable_amount}
+              </td>
+              <td className="px-4 py-3 border whitespace-nowrap">{submission.buyer_name}</td>
+              <td className="px-4 py-3 border whitespace-nowrap text-green-600 font-semibold">
+                {submission.status}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  )}
+</div>
+
+
   );
 };
 

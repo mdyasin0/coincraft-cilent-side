@@ -24,7 +24,7 @@ const Register = () => {
     const photoURL = imgbbRes.data.data.url;
     const { name, email, password, role } = data;
 
-    // ✅ Step 1: Register user to Firebase
+    //Step 1: Register user to Firebase
     await createUser(email, password);
    
     await updateProfile(auth.currentUser, {
@@ -32,7 +32,7 @@ const Register = () => {
   photoURL: photoURL
 });
 
-    // ✅ Step 2: Save user data to your server (MongoDB)
+    // Step 2: Save user data to your server (MongoDB)
     const userData = {
       name,
       email,

@@ -1,4 +1,3 @@
-// hooks/useUserRole.js
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../Authprovider/Firebase_context";

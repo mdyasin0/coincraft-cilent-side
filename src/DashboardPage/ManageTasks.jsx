@@ -44,51 +44,56 @@ const ManageTasks = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h2 className="text-2xl font-semibold mb-5 text-center text-[#0f172a]">Manage Tasks</h2>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra w-full border">
-          <thead className="bg-[#0284c7] text-white">
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Buyer</th>
-              <th>Payable</th>
-              <th>Workers</th>
-              <th>Deadline</th>
-              <th>Actions</th>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h2 className="text-3xl font-bold text-center text-[#0f172a] mb-8">
+    Manage Tasks
+  </h2>
+
+  <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+    <table className="min-w-full table-auto border border-gray-200 text-sm sm:text-base">
+      <thead className="bg-[#0284c7] text-white">
+        <tr>
+          <th className="px-4 py-3 text-left">#</th>
+          <th className="px-4 py-3 text-left">Title</th>
+          <th className="px-4 py-3 text-left">Buyer</th>
+          <th className="px-4 py-3 text-left">Payable</th>
+          <th className="px-4 py-3 text-left">Workers</th>
+          <th className="px-4 py-3 text-left">Deadline</th>
+          <th className="px-4 py-3 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200">
+        {tasks.length > 0 ? (
+          tasks.map((task, index) => (
+            <tr key={task._id} className="hover:bg-gray-50">
+              <td className="px-4 py-3">{index + 1}</td>
+              <td className="px-4 py-3">{task.task_title}</td>
+              <td className="px-4 py-3">{task.buyer_email}</td>
+              <td className="px-4 py-3">${task.payable_amount}</td>
+              <td className="px-4 py-3">{task.required_workers}</td>
+              <td className="px-4 py-3">{task.completion_date}</td>
+              <td className="px-4 py-3">
+                <button
+                  onClick={() => handleDeleteTask(task._id)}
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-md shadow-sm transition duration-200"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {tasks.map((task, index) => (
-              <tr key={task._id}>
-                <td>{index + 1}</td>
-                <td>{task.task_title}</td>
-                <td>{task.buyer_email}</td>
-                <td>{task.payable_amount}</td>
-                <td>{task.required_workers}</td>
-                <td>{task.completion_date}</td>
-                <td>
-                  <button
-                    onClick={() => handleDeleteTask(task._id)}
-                    className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
-                  >
-                    Delete Task
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {tasks.length === 0 && (
-              <tr>
-                <td colSpan="7" className="text-center text-gray-500 py-5">
-                  No tasks found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="7" className="text-center text-gray-500 py-8">
+              No tasks found.
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   );
 };
 

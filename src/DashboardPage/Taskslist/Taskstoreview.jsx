@@ -32,12 +32,12 @@ const TaskToReview = () => {
     try {
       const res = await axios.patch(`http://localhost:5000/submissions/approve/${submission._id}`);
       if (res.data.success) {
-        Swal.fire("✅ Approved!", "Submission has been approved.", "success");
+        Swal.fire(" Approved!", "Submission has been approved.", "success");
         setSubmissions(submissions.filter((s) => s._id !== submission._id));
         setSelectedSubmission(null);
       }
-    } catch (err) {
-      Swal.fire("❌ Error", "Something went wrong.", "error");
+    } catch  {
+      Swal.fire(" Error", "Something went wrong.", "error");
     }
   };
 
@@ -49,82 +49,96 @@ const TaskToReview = () => {
         setSubmissions(submissions.filter((s) => s._id !== submission._id));
         setSelectedSubmission(null);
       }
-    } catch (err) {
-      Swal.fire("❌ Error", "Something went wrong.", "error");
+    } catch  {
+      Swal.fire(" Error", "Something went wrong.", "error");
     }
   };
 
   return (
-    <div className="p-4 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-6">📝 Tasks to Review</h2>
+   <div className="px-4 py-8 max-w-6xl mx-auto">
+  <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left text-gray-800">
+    📝 Tasks to Review
+  </h2>
 
-      {submissions.length === 0 ? (
-        <p className="text-gray-500">No pending submissions found.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="table table-zebra w-full text-center">
-            <thead className="bg-gray-200">
-              <tr>
-                <th>Worker</th>
-                <th>Task Title</th>
-                <th>Payable Amount</th>
-                <th>Submission</th>
-              </tr>
-            </thead>
-            <tbody>
-              {submissions.map((submission) => (
-                <tr key={submission._id}>
-                  <td>{submission.worker_name}</td>
-                  <td>{submission.task_title}</td>
-                  <td>{submission.payable_amount} coins</td>
-                  <td>
-                    <button
-                      className="btn btn-info btn-sm"
-                      onClick={() => setSelectedSubmission(submission)}
-                    >
-                      View
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* Modal */}
-      {selectedSubmission && (
-        <div className="modal modal-open bg-black/60 backdrop-blur-sm">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg mb-4">📄 Submission Details</h3>
-            <p><strong>Worker:</strong> {selectedSubmission.worker_name}</p>
-            <p><strong>Task:</strong> {selectedSubmission.task_title}</p>
-            <p><strong>Details:</strong> {selectedSubmission.submission_details}</p>
-
-            <div className="modal-action justify-between mt-4">
-              <button
-                onClick={() => handleApprove(selectedSubmission)}
-                className="btn btn-success"
-              >
-                ✅ Approve
-              </button>
-              <button
-                onClick={() => handleReject(selectedSubmission)}
-                className="btn btn-error"
-              >
-                ❌ Reject
-              </button>
-              <button
-                onClick={() => setSelectedSubmission(null)}
-                className="btn"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  {submissions.length === 0 ? (
+    <p className="text-gray-500 text-center">No pending submissions found.</p>
+  ) : (
+    <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
+      <table className="min-w-full text-sm sm:text-base text-center">
+        <thead className="bg-gray-100 text-gray-700 uppercase text-xs sm:text-sm">
+          <tr>
+            <th className="px-4 py-3">Worker</th>
+            <th className="px-4 py-3">Task Title</th>
+            <th className="px-4 py-3">Payable Amount</th>
+            <th className="px-4 py-3">Submission</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200">
+          {submissions.map((submission) => (
+            <tr key={submission._id} className="hover:bg-gray-50 transition">
+              <td className="px-4 py-3">{submission.worker_name}</td>
+              <td className="px-4 py-3">{submission.task_title}</td>
+              <td className="px-4 py-3">{submission.payable_amount} coins</td>
+              <td className="px-4 py-3">
+                <button
+                  className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600 transition px-3 py-1 rounded"
+                  onClick={() => setSelectedSubmission(submission)}
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  )}
+
+  {/* Modal */}
+  {selectedSubmission && (
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-4">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-lg p-6">
+        <h3 className="text-xl font-semibold text-center mb-4 text-gray-800">
+          📄 Submission Details
+        </h3>
+        <div className="text-gray-700 space-y-2">
+          <p>
+            <strong>Worker:</strong> {selectedSubmission.worker_name}
+          </p>
+          <p>
+            <strong>Task:</strong> {selectedSubmission.task_title}
+          </p>
+          <p>
+            <strong>Details:</strong> {selectedSubmission.submission_details}
+          </p>
+        </div>
+
+        <div className="mt-6 flex flex-col sm:flex-row sm:justify-between gap-3">
+          <button
+            onClick={() => handleApprove(selectedSubmission)}
+            className="btn w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white transition"
+          >
+            Approve
+          </button>
+          <button
+            onClick={() => handleReject(selectedSubmission)}
+            className="btn w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white transition"
+          >
+             Reject
+          </button>
+          <button
+            onClick={() => setSelectedSubmission(null)}
+            className="btn w-full sm:w-auto bg-gray-300 hover:bg-gray-400 transition"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
+
+
   );
 };
 

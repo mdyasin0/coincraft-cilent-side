@@ -1,12 +1,8 @@
 import { createBrowserRouter } from "react-router";
-
-import React from "react";
-import ReactDOM from "react-dom/client";
 import App from "../App";
 import Home from "../page/Home";
 import Login from "../page/Login";
 import Register from "../page/Register";
-
 import AddTask from "../DashboardPage/AddNewTasks";
 import Dashboard from "../page/Dashboard";
 import MyTaskList from "../DashboardPage/Mytasks";

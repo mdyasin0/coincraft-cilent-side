@@ -63,43 +63,43 @@ const testimonials = [
 
   return (
     <>
-    {/* slider */}
-    <div >
-      <div className="py-10" data-aos="fade-up">
-        <Swiper
-       
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 1000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true, 
-          }}
-          pagination={{ clickable: true }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="rounded-full shadow-lg w-6xl mx-auto "
-        >
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div
-                className="flex flex-col items-center justify-center h-[300px] md:h-[600px] w-full bg-cover bg-center text-center p-6 text-white"
-                style={{
-                  backgroundImage: `url(${slide.image})`,
-                }}
-              >
-                <h2 className="text-3xl md:text-6xl font-bold mb-4 drop-shadow-lg">
-                  {slide.title}
-                </h2>
-                <p className="text-lg md:text-2xl drop-shadow-md">
-                  {slide.subtitle}
-                </p>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </div>
+   {/* slider */}
+<div className="w-full">
+  <div className="py-10 px-4 md:px-8" data-aos="fade-up">
+    <Swiper
+      spaceBetween={30}
+      centeredSlides={true}
+      autoplay={{
+        delay: 1000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
+      pagination={{ clickable: true }}
+      navigation={true}
+      modules={[Autoplay, Pagination, Navigation]}
+      className="w-full max-w-[1600px] mx-auto"
+    >
+      {slides.map((slide, index) => (
+        <SwiperSlide key={index}>
+          <div
+            className="flex flex-col items-center justify-center h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[600px] w-full bg-cover bg-center text-center px-4 text-white"
+            style={{
+              backgroundImage: `url(${slide.image})`,
+            }}
+          >
+            <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 drop-shadow-lg">
+              {slide.title}
+            </h2>
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl drop-shadow-md">
+              {slide.subtitle}
+            </p>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+</div>
+
     {/* best worker */}
     <div className="py-12 bg-[#f8fafc]" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-4">

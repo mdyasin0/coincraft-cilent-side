@@ -18,31 +18,34 @@ const PurchaseCoins = () => {
   
 
   return (
-    <div className="p-6">
-      {/* Coin Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-10">
-        {coinOptions.map((option, index) => (
-          <div
-            key={index}
-            onClick={() => setSelectedAmount(option)}
-            className="cursor-pointer bg-white shadow-md hover:shadow-xl transition rounded-lg p-6 text-center border border-gray-200 hover:border-[#0284c7]"
-          >
-            <h2 className="text-2xl font-bold text-[#0f172a]">{option.coins} Coins</h2>
-            <p className="text-lg text-[#0284c7] mt-2">= ${option.price}</p>
-            <button className="mt-4 bg-[#0284c7] hover:bg-[#0369a1] text-white px-4 py-2 rounded-md">
-              Purchase
-            </button>
-          </div>
-        ))}
+   <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
+  {/* Coin Cards */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
+    {coinOptions.map((option, index) => (
+      <div
+        key={index}
+        onClick={() => setSelectedAmount(option)}
+        className="cursor-pointer bg-white shadow-md hover:shadow-lg transition-shadow rounded-xl p-6 flex flex-col items-center border border-gray-200 hover:border-blue-500"
+      >
+        <h2 className="text-3xl font-extrabold text-gray-900">{option.coins} Coins</h2>
+        <p className="text-xl text-blue-600 mt-2">= ${option.price}</p>
+        <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors w-full sm:w-auto">
+          Purchase
+        </button>
       </div>
+    ))}
+  </div>
 
-      {/* Stripe Checkout Form */}
-      {selectedAmount && (
-        <Elements stripe={stripePromise}>
-          <CheckoutForm selectedAmount={selectedAmount} />
-        </Elements>
-      )}
+  {/* Stripe Checkout Form */}
+  {selectedAmount && (
+    <div className="max-w-md mx-auto">
+      <Elements stripe={stripePromise}>
+        <CheckoutForm selectedAmount={selectedAmount} />
+      </Elements>
     </div>
+  )}
+</div>
+
   );
 };
 

@@ -56,7 +56,7 @@ const Withdrawals = () => {
         setPaymentSystem("");
         setAccountNumber("");
       }
-    } catch (error) {
+    } catch  {
       Swal.fire("Error", "Failed to submit withdrawal.", "error");
     }
   };
@@ -140,7 +140,7 @@ const Withdrawals = () => {
         </form>
       ) : (
         <p className="text-red-600 font-semibold mt-4 text-center">
-          ❌ Insufficient coin. You need minimum 200 coins to withdraw.
+           Insufficient coin. You need minimum 200 coins to withdraw.
         </p>
       )}
     </div>
