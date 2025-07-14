@@ -19,6 +19,8 @@ import Taskreviewforadmin from "../DashboardPage/Taskslist/Taskreviewforadmin";
 import Taskreviewforworker from "../DashboardPage/Taskslist/Taskreviewforworker";
 import Tasksreview from "../DashboardPage/Taskslist/Tasksreviewforbuyer";
 import PrivateRoute from "../component/PrivateRoute";
+import ErrorPage from "../page/ErrorPage";
+import DashboardRedirect from "./DashboardRedirect";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+       {
+      index: true,
+      element: (
+        <PrivateRoute>
+          <DashboardRedirect />
+        </PrivateRoute>
+      ),
+    },
       {
         path: "/dashboard/addtask",
         element: (
@@ -165,4 +175,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:"*",
+    Component: ErrorPage ,
+  }
 ]);
