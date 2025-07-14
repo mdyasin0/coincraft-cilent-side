@@ -23,7 +23,7 @@ const ApprovedSubmissions = () => {
     }
   }, [user]);
 
-  if (loading) return <p>Loading approved submissions...</p>;
+  
 
   return (
     <div className="p-4 sm:p-6 md:p-8 bg-white shadow-md rounded-xl overflow-hidden">

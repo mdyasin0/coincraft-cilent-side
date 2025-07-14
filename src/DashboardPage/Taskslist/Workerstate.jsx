@@ -24,7 +24,9 @@ const WorkerStats = () => {
     }
   }, [user]);
 
-  if (loading) return <p>Loading stats...</p>;
+  if (loading) return <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>;
 
   const totalSubmissions = submissions.length;
   const totalPending = submissions.filter((s) => s.status === "pending").length;

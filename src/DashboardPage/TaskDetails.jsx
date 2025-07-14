@@ -38,7 +38,9 @@ console.log(user.email);
     setSubmissionDetails("");
   };
 
-  if (!task) return <p className="text-center mt-10">Loading...</p>;
+  if (!task) return <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow rounded-lg">

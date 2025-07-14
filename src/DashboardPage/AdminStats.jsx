@@ -43,7 +43,9 @@ const AdminStats = () => {
     fetchStats();
   }, []);
 
-  if (loading) return <p>Loading admin stats...</p>;
+  if (loading) return <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>;
   if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (

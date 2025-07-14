@@ -29,7 +29,9 @@ const BuyerStats = () => {
     }
   }, [user]);
 
-  if (loading) return <p className="text-center py-10 text-[#0284c7] font-semibold">Loading stats...</p>;
+  if (loading) return <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto gap-4 text-[#0f172a]">

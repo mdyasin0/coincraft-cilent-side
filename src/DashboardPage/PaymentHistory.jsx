@@ -30,7 +30,9 @@ const PaymentHistory = () => {
   </h2>
 
   {loading ? (
-    <p className="text-center text-gray-500 italic">Loading payment history...</p>
+   <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>
   ) : payments.length === 0 ? (
     <p className="text-center text-gray-500 italic">No payment history found.</p>
   ) : (

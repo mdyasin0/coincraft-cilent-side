@@ -6,13 +6,17 @@ import Swal from "sweetalert2";
 const MyTaskList = () => {
   const { user } = useContext(AuthContext);
   const [myTasks, setMyTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchMyTasks = async () => {
     try {
+      setLoading(true);
       const res = await axios.get(`http://localhost:5000/my-tasks/${user.email}`);
       setMyTasks(res.data);
     } catch (err) {
       console.error("Failed to fetch tasks", err);
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -20,7 +24,7 @@ const MyTaskList = () => {
     if (user?.email) {
       fetchMyTasks();
     }
-  }, );
+  }, [user?.email]);
 
  const handleDelete = async (taskId, workers, amount, status) => {
   const confirm = await Swal.fire({
@@ -61,6 +65,15 @@ const MyTaskList = () => {
     // Navigate to update page with task ID
     window.location.href = `/dashboard/update-task/${task._id}`;
   };
+
+if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>
+    );
+  }
+
 
   return (
     <div className="w-full overflow-x-auto">

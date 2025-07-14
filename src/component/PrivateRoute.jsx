@@ -8,7 +8,9 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return <div className="text-center text-xl py-10">Loading...</div>;
+    return <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>;
   }
 
   if (!user) {

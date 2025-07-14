@@ -61,7 +61,9 @@ const Withdrawals = () => {
     }
   };
 
-  if (!userInfo) return <p className="text-center py-10">Loading...</p>;
+  if (!userInfo) return <div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-xl"></span>
+    </div>;
 
   const userCoin = userInfo.coin;
   const dollarValue = (userCoin / 20).toFixed(2);
