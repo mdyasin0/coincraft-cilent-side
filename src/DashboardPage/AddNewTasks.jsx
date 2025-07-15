@@ -40,7 +40,7 @@ const AddTask = () => {
     const totalAmount = required_workers * payable_amount;
 
     try {
-      const { data: buyer } = await axios.get(`http://localhost:5000/user/${user.email}`);
+      const { data: buyer } = await axios.get(`https://coincrafter-chi.vercel.app/user/${user.email}`);
       if (buyer.coin < totalAmount) {
         Swal.fire('Not enough coins', 'Please purchase coins first.', 'warning');
         return navigate('/dashboard/purchasecoins');
@@ -60,8 +60,8 @@ const AddTask = () => {
         status: 'active'
       };
 
-      await axios.post('http://localhost:5000/tasks', taskData);
-      await axios.patch(`http://localhost:5000/coins/${user.email}`, { coinToDeduct: totalAmount });
+      await axios.post('https://coincrafter-chi.vercel.app/tasks', taskData);
+      await axios.patch(`https://coincrafter-chi.vercel.app/coins/${user.email}`, { coinToDeduct: totalAmount });
 
       Swal.fire('Success!', 'Task added successfully.', 'success');
       form.reset();

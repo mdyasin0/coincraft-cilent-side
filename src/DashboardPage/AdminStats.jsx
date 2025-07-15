@@ -17,12 +17,12 @@ const AdminStats = () => {
         setLoading(true);
 
         // Fetch worker, buyer, coin stats
-        const resStats = await fetch("http://localhost:5000/admin_stats");
+        const resStats = await fetch("https://coincrafter-chi.vercel.app/admin_stats");
         if (!resStats.ok) throw new Error("Failed to fetch admin stats");
         const statsData = await resStats.json();
 
         // Fetch total payments
-        const resPayments = await fetch("http://localhost:5000/withdrawals/total-payment");
+        const resPayments = await fetch("https://coincrafter-chi.vercel.app/withdrawals/total-payment");
         if (!resPayments.ok) throw new Error("Failed to fetch total payments");
         const paymentsData = await resPayments.json();
 

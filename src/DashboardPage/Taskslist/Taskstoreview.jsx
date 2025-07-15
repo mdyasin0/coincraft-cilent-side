@@ -13,7 +13,7 @@ const TaskToReview = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:5000/submissions/pending/${user.email}`)
+      axios.get(`https://coincrafter-chi.vercel.app/submissions/pending/${user.email}`)
         .then((res) => {
           if (Array.isArray(res.data)) {
             setSubmissions(res.data);
@@ -30,7 +30,7 @@ const TaskToReview = () => {
 
   const handleApprove = async (submission) => {
     try {
-      const res = await axios.patch(`http://localhost:5000/submissions/approve/${submission._id}`);
+      const res = await axios.patch(`https://coincrafter-chi.vercel.app/submissions/approve/${submission._id}`);
       if (res.data.success) {
         Swal.fire(" Approved!", "Submission has been approved.", "success");
         setSubmissions(submissions.filter((s) => s._id !== submission._id));
@@ -43,7 +43,7 @@ const TaskToReview = () => {
 
   const handleReject = async (submission) => {
     try {
-      const res = await axios.patch(`http://localhost:5000/submissions/reject/${submission._id}`);
+      const res = await axios.patch(`https://coincrafter-chi.vercel.app/submissions/reject/${submission._id}`);
       if (res.data.success) {
         Swal.fire("❗ Rejected!", "Submission has been rejected.", "info");
         setSubmissions(submissions.filter((s) => s._id !== submission._id));

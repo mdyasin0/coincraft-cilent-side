@@ -10,7 +10,7 @@ const ManageUsers = () => {
   const fetchUsers = async () => {
     setIsLoading(true); 
     try {
-      const res = await axios.get("http://localhost:5000/alluser");
+      const res = await axios.get("https://coincrafter-chi.vercel.app/alluser");
       setUsers(res.data);
     } catch (err) {
       console.error("Failed to load users", err);
@@ -38,7 +38,7 @@ const ManageUsers = () => {
     if (!result.isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:5000/delete-user/${email}`);
+      await axios.delete(`https://coincrafter-chi.vercel.app/delete-user/${email}`);
       Swal.fire('Deleted!', 'User removed successfully.', 'success');
       fetchUsers();
     } catch (err) {
@@ -50,7 +50,7 @@ const ManageUsers = () => {
   // Update role
   const handleRoleChange = async (email, newRole) => {
     try {
-      await axios.patch(`http://localhost:5000/update-role/${email}`, { role: newRole });
+      await axios.patch(`https://coincrafter-chi.vercel.app/update-role/${email}`, { role: newRole });
       Swal.fire("Updated!", "User role updated successfully.", "success");
       fetchUsers();
     } catch (err) {

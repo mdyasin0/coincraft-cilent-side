@@ -6,7 +6,7 @@ const TaskListForWorker = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/alltasks").then((res) => {
+    axios.get("https://coincrafter-chi.vercel.app/alltasks").then((res) => {
       setTasks(res.data);
     });
   }, []);

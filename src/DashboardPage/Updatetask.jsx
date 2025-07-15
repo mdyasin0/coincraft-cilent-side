@@ -16,7 +16,7 @@ const Updatetask = () => {
 useEffect(() => {
   const fetchTask = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/task/${id}`);
+      const res = await axios.get(`https://coincrafter-chi.vercel.app/task/${id}`);
       setTask(res.data);
     } catch (error) {
       console.error("Failed to load task:", error);
@@ -48,10 +48,10 @@ useEffect(() => {
 useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/user?email=${user.email}`)
+        .get(`https://coincrafter-chi.vercel.app/user?email=${user.email}`)
         .then((res) => {
           setUserInfo(res.data); 
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch((err) => console.error("Failed to load user", err));
     }
@@ -98,8 +98,8 @@ const handleAddTask = async (e) => {
 
   //if have coin then go 
   try {
-    const res = await axios.patch(`http://localhost:5000/update-task/${id}`, updatedTask);
-    console.log("PATCH response:", res.data);
+    const res = await axios.patch(`https://coincrafter-chi.vercel.app/update-task/${id}`, updatedTask);
+    // console.log("PATCH response:", res.data);
 
     Swal.fire('Success!', 'Task updated successfully.', 'success');
     navigate("/dashboard/mytasklist");

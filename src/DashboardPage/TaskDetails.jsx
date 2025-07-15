@@ -12,7 +12,7 @@ const TaskDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/tasks/${id}`).then((res) => {
+    axios.get(`https://coincrafter-chi.vercel.app/tasks/${id}`).then((res) => {
       setTask(res.data);
     });
   }, [id]);
@@ -33,7 +33,7 @@ console.log(user.email);
       submission_date: new Date(),
     };
 
-    await axios.post("http://localhost:5000/submissions", submissionData);
+    await axios.post("https://coincrafter-chi.vercel.app/submissions", submissionData);
 
     Swal.fire("Submitted!", "Your task has been submitted for review.", "success");
  navigate("/dashboard/taskreviewforworker"); 

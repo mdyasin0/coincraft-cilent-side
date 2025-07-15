@@ -11,10 +11,10 @@ const Navbar = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/user?email=${user.email}`)
+        .get(`https://coincrafter-chi.vercel.app/user?email=${user.email}`)
         .then((res) => {
           setUserData(res.data); 
-          console.log("navbar data",res.data);
+          // console.log("navbar data",res.data);
         })
         .catch((err) => console.error("Failed to load user", err));
     }
@@ -94,7 +94,7 @@ const Navbar = () => {
                 </NavLink>
 
                 <div className="text-white flex items-center gap-1">
-                  <img className="w-6" src="src/assets/coin.png" alt="coin" />
+                  <img className="w-6" src="https://i.ibb.co/PZSBhqZk/coin.png" alt="coin" />
                   {userData?.coin}
                 </div>
               </>

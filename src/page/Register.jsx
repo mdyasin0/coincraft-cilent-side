@@ -41,7 +41,7 @@ const Register = () => {
       role,
     };
 
-    const res = await axios.post("http://localhost:5000/register-user", userData);
+    const res = await axios.post("https://coincrafter-chi.vercel.app/register-user", userData);
 
     if (res.data.insertedId) {
       Swal.fire("Success", "Registration successful!", "success");

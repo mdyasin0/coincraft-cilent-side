@@ -10,7 +10,7 @@ const MySubmission = () => {
   useEffect(() => {
     if (user?.email) {
       setLoading(true); // start loading
-      axios.get(`http://localhost:5000/submissions/worker/${user.email}`)
+      axios.get(`https://coincrafter-chi.vercel.app/submissions/worker/${user.email}`)
         .then((res) => setSubmissions(res.data))
         .catch((err) => console.error("Error loading submissions:", err))
         .finally(() => setLoading(false)); // end loading

@@ -15,7 +15,7 @@ const BuyerStats = () => {
   useEffect(() => {
     const fetchBuyerStats = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/buyer-stats/${user.email}`);
+        const res = await axios.get(`https://coincrafter-chi.vercel.app/buyer-stats/${user.email}`);
         setStats(res.data);
         setLoading(false);
       } catch (error) {

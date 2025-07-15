@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-
 import useUserRole from "../Hook/UserRole";
+import Swal from "sweetalert2";
 
 const DashboardRedirect = () => {
   const navigate = useNavigate();
@@ -9,7 +9,8 @@ const DashboardRedirect = () => {
 
   useEffect(() => {
     if (loading) return;
-    console.log("worker role for index route ", role);
+
+    // console.log("worker role for index route ", role);
 
     if (role === "admin") {
       navigate("/dashboard/taskreviewforadmin");
@@ -18,7 +19,14 @@ const DashboardRedirect = () => {
     } else if (role === "worker") {
       navigate("/dashboard/taskreviewforworker");
     } else {
-      navigate("/login");
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Email",
+        text: "Please register with another email. Don’t use this email again.",
+        confirmButtonColor: "#d33",
+      }).then(() => {
+        navigate("/login");
+      });
     }
   }, [role, navigate, loading]);
 

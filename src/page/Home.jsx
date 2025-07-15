@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
    
-    fetch("http://localhost:5000/users/worker")
+    fetch("https://coincrafter-chi.vercel.app/users/worker")
       .then((res) => res.json())
       .then((data) => {
        

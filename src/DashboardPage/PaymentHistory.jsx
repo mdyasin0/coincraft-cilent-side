@@ -11,7 +11,7 @@ const PaymentHistory = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/payments/${user.email}`)
+        .get(`https://coincrafter-chi.vercel.app/payments/${user.email}`)
         .then((res) => {
           setPayments(res.data);
           setLoading(false);

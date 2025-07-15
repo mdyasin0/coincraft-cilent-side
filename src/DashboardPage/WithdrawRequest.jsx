@@ -8,7 +8,7 @@ const WithdrawRequest = () => {
   // Load pending withdrawal requests
   useEffect(() => {
     axios
-      .get("http://localhost:5000/withdrawals/pending")
+      .get("https://coincrafter-chi.vercel.app/withdrawals/pending")
       .then((res) => setWithdrawals(res.data))
       .catch((err) => console.error("Error loading withdrawals:", err));
   }, []);
@@ -19,7 +19,7 @@ const WithdrawRequest = () => {
     if (!confirm) return;
 
     try {
-      const res = await axios.patch(`http://localhost:5000/withdrawals/approve/${id}`);
+      const res = await axios.patch(`https://coincrafter-chi.vercel.app/withdrawals/approve/${id}`);
       if (res.data.success) {
         Swal.fire("Success", "Withdrawal marked as paid!", "success");
         // Remove approved item from state

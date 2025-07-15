@@ -11,7 +11,7 @@ const MyTaskList = () => {
   const fetchMyTasks = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/my-tasks/${user.email}`);
+      const res = await axios.get(`https://coincrafter-chi.vercel.app/my-tasks/${user.email}`);
       setMyTasks(res.data);
     } catch (err) {
       console.error("Failed to fetch tasks", err);
@@ -40,12 +40,12 @@ const MyTaskList = () => {
   if (confirm.isConfirmed) {
     try {
       // Delete task
-      await axios.delete(`http://localhost:5000/delete-task/${taskId}`);
+      await axios.delete(`https://coincrafter-chi.vercel.app/delete-task/${taskId}`);
 
       // Refill coins if task is not completed
       if (status !== 'completed') {
         const refillAmount = workers * amount;
-        await axios.patch(`http://localhost:5000/refill-coins/${user.email}`, {
+        await axios.patch(`https://coincrafter-chi.vercel.app/refill-coins/${user.email}`, {
           refill: refillAmount,
         });
       }

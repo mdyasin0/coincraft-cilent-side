@@ -10,7 +10,7 @@ const ManageTasks = () => {
   const fetchTasks = async () => {
     try {
       setLoading(true); // Start loading
-      const res = await axios.get("http://localhost:5000/alltasks");
+      const res = await axios.get("https://coincrafter-chi.vercel.app/alltasks");
       setTasks(res.data);
     } catch (err) {
       console.error("Failed to fetch tasks:", err);
@@ -34,7 +34,7 @@ const ManageTasks = () => {
     if (!result.isConfirmed) return;
 
     try {
-      await axios.delete(`http://localhost:5000/delete-task/${id}`);
+      await axios.delete(`https://coincrafter-chi.vercel.app/delete-task/${id}`);
       Swal.fire("Deleted!", "Task has been deleted.", "success");
       fetchTasks();
     } catch (err) {

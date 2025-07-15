@@ -12,7 +12,7 @@ const WorkerStats = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/submissions/worker?email=${user.email}`)
+        .get(`https://coincrafter-chi.vercel.app/submissions/worker?email=${user.email}`)
         .then((res) => {
           setSubmissions(res.data);
           setLoading(false);
