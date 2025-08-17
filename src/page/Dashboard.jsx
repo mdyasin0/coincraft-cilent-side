@@ -18,6 +18,7 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (user?.email) {
@@ -56,20 +57,41 @@ const Dashboard = () => {
                 <>
                   <div className="flex items-center gap-3">
                     <img
-                      src={userData?.photoURL || "/favicon.png"}
+                      src={userData?.photoURL || "src/assets/coin.png"}
                       alt={userData?.name || "User"}
                       className="w-8 h-8 rounded-full"
+                      onClick={() => setIsOpen(true)}
                     />
-                    <p>Name: {userData?.name}</p>
+                    
                   </div>
-                  <div className="border border-amber-300 my-1"></div>
-                  <div className="flex items-center gap-3">
-                    <p>Role: {userData?.role}</p>
-                    <div className="flex items-center gap-1">
-                      <img className="w-5" src="src/assets/coin.png" alt="" />
-                      <p className="font-bold">{userData?.coin}</p>
-                    </div>
-                  </div>
+                      {/* Modal */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white text-black rounded-lg p-6 w-80 relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              onClick={() => setIsOpen(false)}
+            >
+              ✖
+            </button>
+
+            <div className="flex flex-col items-center gap-4">
+              <img
+                src={userData.photoURL || "/favicon.png"}
+                alt={userData.name || "User"}
+                className="w-24 h-24 rounded-full"
+              />
+              <p className="font-bold text-lg">{userData.name}</p>
+              <p className="text-gray-600">{userData.email}</p>
+              <p className="text-gray-600">Role: {userData.role}</p>
+              <div className="flex items-center gap-2 mt-2">
+                <img className="w-5" src="src/assets/coin.png" alt="coin" />
+                <p className="font-bold">{userData.coin}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
                 </>
               ) : (
                <div className="flex justify-center items-center">
