@@ -6,21 +6,19 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
 
-
 const Login = () => {
   const location = useLocation();
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const from = location.state?.from?.pathname || "/dashboard";
-  
+  const from = location.state?.from?.pathname || "/dashboard";
+
   const { register, handleSubmit, formState: { errors } } = useForm();
-   const { signIn ,googleSignIn } = useContext(AuthContext);
-const googleSubmit = async (e) => {
-  
+  const { signIn, googleSignIn } = useContext(AuthContext);
+
+  const googleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-     
       const result = await googleSignIn();
       const user = result.user;
 
@@ -28,15 +26,13 @@ const googleSubmit = async (e) => {
         name: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
-        role: "worker", // default role
+        role: "worker",
       };
 
-      
       const res = await axios.post("https://coincrafter-chi.vercel.app/google-signin", saveUser);
 
       if (res.data.insertedId || res.data.user) {
         Swal.fire("Success", "User signed in and saved!", "success");
-       
         navigate("/dashboard"); 
       } else {
         Swal.fire("Error", "Something went wrong!", "error");
@@ -46,53 +42,54 @@ const googleSubmit = async (e) => {
       Swal.fire("Error", "Google Sign-In failed!", "error");
     }
   };
- const onSubmit = async (data) => {
-  const { email, password } = data;
 
-  try {
-    await signIn(email, password);
-    Swal.fire("Success", "Login successful!", "success");
-     navigate(from, { replace: true });
-  } catch (error) {
-    console.error(error);
-    let message = "Something went wrong!";
+  const onSubmit = async (data) => {
+    const { email, password } = data;
 
-    if (error.code === "auth/invalid-credential") {
-      message = "User not found. Please register first.";
-    } else if (error.code === "auth/wrong-password") {
-      message = "Incorrect password. Try again.";
-    } else if (error.code === "auth/invalid-email") {
-      message = "Invalid email address.";
+    try {
+      await signIn(email, password);
+      Swal.fire("Success", "Login successful!", "success");
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.error(error);
+      let message = "Something went wrong!";
+
+      if (error.code === "auth/invalid-credential") {
+        message = "User not found. Please register first.";
+      } else if (error.code === "auth/wrong-password") {
+        message = "Incorrect password. Try again.";
+      } else if (error.code === "auth/invalid-email") {
+        message = "Invalid email address.";
+      }
+
+      Swal.fire("Error", message, "error");
     }
-
-    Swal.fire("Error", message, "error");
-  }
-};
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] px-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-[#0f172a] mb-6 text-center">Login to CoinCrafter</h2>
+    <div className="min-h-screen flex items-center justify-center px-4 bg-[#f8fafc] dark:bg-gray-900 dark:text-white">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold text-[#0f172a] dark:text-white mb-6 text-center">Login to CoinCrafter</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="text-[#0f172a] font-medium">Email</label>
+            <label className="text-[#0f172a] dark:text-white font-medium">Email</label>
             <input
               type="email"
               {...register("email", { required: true })}
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border rounded-md mt-1"
+              className="w-full px-4 py-2 border rounded-md mt-1 bg-white dark:bg-gray-700 text-black dark:text-white"
             />
             {errors.email && <p className="text-[#dc2626] text-sm">Email is required</p>}
           </div>
 
           <div>
-            <label className="text-[#0f172a] font-medium">Password</label>
+            <label className="text-[#0f172a] dark:text-white font-medium">Password</label>
             <input
               type="password"
               {...register("password", { required: true })}
               placeholder="Enter your password"
-              className="w-full px-4 py-2 border rounded-md mt-1"
+              className="w-full px-4 py-2 border rounded-md mt-1 bg-white dark:bg-gray-700 text-black dark:text-white"
             />
             {errors.password && <p className="text-[#dc2626] text-sm">Password is required</p>}
           </div>
@@ -102,13 +99,16 @@ const googleSubmit = async (e) => {
           </button>
         </form>
 
-        <div className="text-center my-4">— or —</div>
+        <div className="text-center my-4 text-gray-600 dark:text-gray-300">— or —</div>
 
-        <button onClick={googleSubmit} className="flex items-center justify-center gap-2 w-full bg-white border hover:bg-gray-100 text-[#0f172a] py-2 rounded-md">
+        <button
+          onClick={googleSubmit}
+          className="flex items-center justify-center gap-2 w-full bg-white dark:bg-gray-700 border hover:bg-gray-100 dark:hover:bg-gray-600 text-[#0f172a] dark:text-white py-2 rounded-md"
+        >
           <FaGoogle /> Sign in with Google
         </button>
 
-        <p className="mt-4 text-sm text-center text-[#334155]">
+        <p className="mt-4 text-sm text-center text-[#334155] dark:text-gray-300">
           Don't have an account? <a href="/register" className="text-[#0284c7] hover:underline">Register</a>
         </p>
       </div>

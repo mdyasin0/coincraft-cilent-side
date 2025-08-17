@@ -4,18 +4,18 @@ import Swal from "sweetalert2";
 
 const ManageTasks = () => {
   const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true); // Loader state
+  const [loading, setLoading] = useState(true);
 
   // Load all tasks from the server
   const fetchTasks = async () => {
     try {
-      setLoading(true); // Start loading
+      setLoading(true);
       const res = await axios.get("https://coincrafter-chi.vercel.app/alltasks");
       setTasks(res.data);
     } catch (err) {
       console.error("Failed to fetch tasks:", err);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
@@ -49,17 +49,17 @@ const ManageTasks = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <h2 className="text-3xl font-bold text-center text-[#0f172a] mb-8">
+      <h2 className="text-3xl font-bold text-center text-[#0f172a] dark:text-black mb-8">
         Manage Tasks
       </h2>
 
       {loading ? (
-       <div className="flex justify-center items-center h-screen">
-       <span className="loading loading-spinner loading-xl"></span>
-     </div>
+        <div className="flex justify-center items-center h-screen">
+          <span className="loading loading-spinner loading-xl"></span>
+        </div>
       ) : (
-        <div className="overflow-x-auto bg-white shadow-md rounded-lg">
-          <table className="min-w-full table-auto border border-gray-200 text-sm sm:text-base">
+        <div className="overflow-x-auto bg-white dark:bg-gray-900 shadow-md rounded-lg">
+          <table className="min-w-full table-auto border border-gray-200 dark:border-gray-700 text-sm sm:text-base">
             <thead className="bg-[#0284c7] text-white">
               <tr>
                 <th className="px-4 py-3 text-left">#</th>
@@ -71,10 +71,13 @@ const ManageTasks = () => {
                 <th className="px-4 py-3 text-left">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
               {tasks.length > 0 ? (
                 tasks.map((task, index) => (
-                  <tr key={task._id} className="hover:bg-gray-50">
+                  <tr
+                    key={task._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200"
+                  >
                     <td className="px-4 py-3">{index + 1}</td>
                     <td className="px-4 py-3">{task.task_title}</td>
                     <td className="px-4 py-3">{task.buyer_email}</td>
@@ -93,7 +96,10 @@ const ManageTasks = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="7" className="text-center text-gray-500 py-8">
+                  <td
+                    colSpan="7"
+                    className="text-center text-gray-500 dark:text-gray-400 py-8"
+                  >
                     No tasks found.
                   </td>
                 </tr>

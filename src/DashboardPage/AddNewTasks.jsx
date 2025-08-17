@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Authprovider/Firebase_context';
 
-
 const AddTask = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -18,7 +17,10 @@ const AddTask = () => {
 
     setUploading(true);
     try {
-      const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData);
+      const res = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
+        formData
+      );
       setImage(res.data.data.url);
       setUploading(false);
     } catch (error) {
@@ -74,25 +76,69 @@ const AddTask = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
-      <h2 className="text-2xl font-bold text-[#0f172a] mb-4">Add New Task</h2>
+    <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+      <h2 className="text-2xl font-bold text-[#0f172a] dark:text-white mb-4">Add New Task</h2>
       <form onSubmit={handleAddTask}>
-        <input type="text" name="task_title" placeholder="Task Title" className="input input-bordered w-full mb-4" required />
+        <input
+          type="text"
+          name="task_title"
+          placeholder="Task Title"
+          className="input input-bordered w-full mb-4 bg-white dark:bg-gray-800 text-black dark:text-white"
+          required
+        />
 
-        <textarea name="task_detail" placeholder="Task Detail" className="textarea textarea-bordered w-full mb-4" required></textarea>
+        <textarea
+          name="task_detail"
+          placeholder="Task Detail"
+          className="textarea textarea-bordered w-full mb-4 bg-white dark:bg-gray-800 text-black dark:text-white"
+          required
+        ></textarea>
 
         <div className="grid grid-cols-2 gap-4">
-          <input type="number" name="required_workers" placeholder="Required Workers" className="input input-bordered" required />
-          <input type="number" name="payable_amount" placeholder="Payable Amount" className="input input-bordered" required />
+          <input
+            type="number"
+            name="required_workers"
+            placeholder="Required Workers"
+            className="input input-bordered bg-white dark:bg-gray-800 text-black dark:text-white"
+            required
+          />
+          <input
+            type="number"
+            name="payable_amount"
+            placeholder="Payable Amount"
+            className="input input-bordered bg-white dark:bg-gray-800 text-black dark:text-white"
+            required
+          />
         </div>
 
-        <input type="date" name="completion_date" className="input input-bordered w-full mt-4" required />
-        <input type="text" name="submission_info" placeholder="What to submit?" className="input input-bordered w-full mt-4" required />
+        <input
+          type="date"
+          name="completion_date"
+          className="input input-bordered w-full mt-4 bg-white dark:bg-gray-800 text-black dark:text-white"
+          required
+        />
+        <input
+          type="text"
+          name="submission_info"
+          placeholder="What to submit?"
+          className="input input-bordered w-full mt-4 bg-white dark:bg-gray-800 text-black dark:text-white"
+          required
+        />
 
-        <input type="file" onChange={handleImageUpload} className="file-input file-input-bordered w-full mt-4" required />
+        <input
+          type="file"
+          onChange={handleImageUpload}
+          className="file-input file-input-bordered w-full mt-4 bg-white dark:bg-gray-800 text-black dark:text-white"
+          required
+        />
         {uploading && <p className="text-sm text-blue-500 mt-2">Uploading image...</p>}
 
-        <button type="submit" className="mt-6 w-full bg-[#0284c7] hover:bg-[#0369a1] text-white py-2 rounded-md">Add Task</button>
+        <button
+          type="submit"
+          className="mt-6 w-full bg-[#0284c7] hover:bg-[#0369a1] text-white py-2 rounded-md"
+        >
+          Add Task
+        </button>
       </form>
     </div>
   );
