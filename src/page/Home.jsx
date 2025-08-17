@@ -5,9 +5,36 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import FAQ from "./FAQ";
+import Swal from "sweetalert2";
 
 const Home = () => {
  const [workers, setWorkers] = useState([]);
+
+   const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    // Check if email is empty
+    if (!email.trim()) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter a valid email before subscribing!",
+      });
+      return;
+    }
+
+    // If email is valid
+    Swal.fire({
+      icon: "success",
+      title: "Thank you for subscribing!",
+      text: "You’ll now receive updates from CoinCrafter 🎉",
+    });
+
+    // Clear the field
+    setEmail("");
+  };
 
   useEffect(() => {
    
@@ -230,16 +257,32 @@ const testimonials = [
   </div>
 </section>
 {/* "Newsletter & CTA Section" */}
-<section className="bg-gradient-to-r from-[#0284c7] to-[#0f172a] text-white py-12 px-4">
-  <div className="max-w-4xl mx-auto text-center">
-    <h2 className="text-3xl font-bold mb-4">Stay Updated with CoinCrafter</h2>
-    <p className="mb-6 text-[#facc15]">Subscribe to get the latest tasks and features right in your inbox.</p>
-    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-      <input type="email" placeholder="Enter your email" className="px-4 py-2 rounded text-black w-full sm:w-2/3" />
-      <button className="bg-[#facc15] hover:bg-yellow-400 text-[#0f172a] font-semibold px-6 py-2 rounded">Subscribe</button>
-    </div>
-  </div>
-</section>
+ <section className="bg-gradient-to-r from-[#0284c7] to-[#0f172a] text-white py-12 px-4">
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-4">Stay Updated with CoinCrafter</h2>
+        <p className="mb-6 text-[#facc15]">
+          Subscribe to get the latest tasks and features right in your inbox.
+        </p>
+        <form
+          onSubmit={handleSubscribe}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="px-4 py-2 rounded text-white w-full sm:w-2/3"
+          />
+          <button
+            type="submit"
+            className="bg-[#facc15] hover:bg-yellow-400 text-[#0f172a] font-semibold px-6 py-2 rounded"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
 
     
     </>
