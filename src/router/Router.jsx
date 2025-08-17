@@ -21,6 +21,9 @@ import Tasksreview from "../DashboardPage/Taskslist/Tasksreviewforbuyer";
 import PrivateRoute from "../component/PrivateRoute";
 import ErrorPage from "../page/ErrorPage";
 import DashboardRedirect from "./DashboardRedirect";
+import Admin_overview from "../DashboardPage/Overview/Admin_overview";
+import Worker_overview from "../DashboardPage/Overview/Worker_overview";
+import Buyer_overview from "../DashboardPage/Overview/buyer_overview";
 
 export const router = createBrowserRouter([
   {
@@ -165,6 +168,32 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/dashboard/adminoverview" ,
+        element : (
+          <PrivateRoute>
+            <Admin_overview></Admin_overview>
+          </PrivateRoute>
+        )
+      },
+      {
+        path: "/dashboard/worker_overview" ,
+        element: (
+          <PrivateRoute>
+            <Worker_overview></Worker_overview>
+          </PrivateRoute>
+        )
+      }
+      ,
+      {
+        path: "/dashboard/buyer_overview" ,
+        element: (
+          <PrivateRoute>
+            <Buyer_overview></Buyer_overview>
+          </PrivateRoute>
+        )
+      }
+      ,
       {
         path: "/dashboard/withdrawals",
         element: (

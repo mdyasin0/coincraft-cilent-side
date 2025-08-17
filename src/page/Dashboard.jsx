@@ -12,6 +12,7 @@ import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { AuthContext } from "../Authprovider/Firebase_context";
 import axios from "axios";
 import useUserRole from "../Hook/UserRole";
+import { GrOverview } from "react-icons/gr";
 
 const Dashboard = () => {
   const { role, loading } = useUserRole();
@@ -59,7 +60,7 @@ const Dashboard = () => {
                     <img
                       src={userData?.photoURL || "src/assets/coin.png"}
                       alt={userData?.name || "User"}
-                      className="w-8 h-8 rounded-full"
+                      className="w-8 h-8 cursor-pointer rounded-full"
                       onClick={() => setIsOpen(true)}
                     />
                     
@@ -85,7 +86,7 @@ const Dashboard = () => {
               <p className="text-gray-600">{userData.email}</p>
               <p className="text-gray-600">Role: {userData.role}</p>
               <div className="flex items-center gap-2 mt-2">
-                <img className="w-5" src="src/assets/coin.png" alt="coin" />
+                <img className="w-5" src="https://i.ibb.co.com/KjQ9Y455/coin.png" alt="coin" />
                 <p className="font-bold">{userData.coin}</p>
               </div>
             </div>
@@ -188,6 +189,19 @@ const Dashboard = () => {
 
             {role === "admin" && (
               <>
+              <NavLink
+                  to="/dashboard/adminoverview"
+                   className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <GrOverview />
+                  overview
+                </NavLink>
+
                 <NavLink
                   to="/dashboard/taskreviewforadmin"
                    className={({ isActive }) =>
@@ -230,6 +244,20 @@ const Dashboard = () => {
             )}
             {role === "worker" && (
               <>
+<NavLink
+                  to="/dashboard/worker_overview"
+                   className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <GrOverview />
+                  overview
+                </NavLink>
+
+
                 <NavLink
                   to="/dashboard/taskreviewforworker"
                    className={({ isActive }) =>
@@ -271,6 +299,20 @@ const Dashboard = () => {
             )}
             {role === "buyer" && (
               <>
+<NavLink
+                  to="/dashboard/buyer_overview"
+                   className={({ isActive }) =>
+    `p-2 rounded flex items-center gap-3 transition duration-200 ${
+      isActive ? 'bg-[#0284c7] text-white font-semibold' : 'text-white hover:bg-[#0284c7] hover:text-white'
+    }`
+  }
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <GrOverview />
+                  overview
+                </NavLink>
+
+
                 <NavLink
                   to="/dashboard/tasksreview"
                  className={({ isActive }) =>
