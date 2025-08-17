@@ -31,7 +31,7 @@ const Navbar = () => {
     }
   };
   return (
-     <div className="bg-[#0f172a]">
+     <div className="bg-[#0f172a] fixed top-0 w-full z-10 mb-10">
       <nav className="py-3 max-w-6xl mx-auto flex flex-wrap items-center justify-between px-4 md:px-0">
         {/* Logo & Title */}
         <div className="flex items-center gap-3">

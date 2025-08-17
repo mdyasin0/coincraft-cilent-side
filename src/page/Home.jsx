@@ -65,7 +65,7 @@ const testimonials = [
     <>
    {/* slider */}
 <div className="w-full">
-  <div className="py-10 px-4 md:px-8" data-aos="fade-up">
+  <div className="py-10 pt-30 px-4 md:px-8" data-aos="fade-up">
     <Swiper
       spaceBetween={30}
       centeredSlides={true}
@@ -82,7 +82,7 @@ const testimonials = [
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
           <div
-            className="flex flex-col items-center justify-center h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[600px] w-full bg-cover bg-center text-center px-4 text-white"
+            className="flex  flex-col items-center justify-center h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[600px] w-full bg-cover bg-center text-center px-4 text-white"
             style={{
               backgroundImage: `url(${slide.image})`,
             }}
