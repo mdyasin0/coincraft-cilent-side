@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useEffect, useState } from "react";
+import FAQ from "./FAQ";
 
 const Home = () => {
  const [workers, setWorkers] = useState([]);
@@ -203,6 +204,11 @@ const testimonials = [
     </div>
   </div>
 </section>
+
+{/* FAQ section  */}
+<FAQ></FAQ>
+
+
 {/*  "Platform Stats" Section */}
 <section className="bg-[#0f172a] text-white py-12 px-4">
   <div className="max-w-6xl mx-auto text-center">
