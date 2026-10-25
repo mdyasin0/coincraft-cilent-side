@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "coin-crafter-c3107"
-  }
+    "default": "coincraft-a9594"
+  },
+  "targets": {},
+  "etags": {}
 }

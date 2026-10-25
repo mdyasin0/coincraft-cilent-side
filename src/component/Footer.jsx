@@ -42,41 +42,12 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-3">Contact</h3>
           <ul className="text-sm space-y-2">
             <li>Email: support@coincrafter.com</li>
-            <li>Phone: +880 1234 567 890</li>
+            <li>Phone: +880 1xxxxxxxxxxxxx</li>
             <li>Location: Dhaka, Bangladesh</li>
           </ul>
         </div>
 
-        {/* Social Icons */}
-        <div>
-          <h3 className="text-white font-semibold mb-3">Follow Us</h3>
-          <div className="flex space-x-4 text-2xl">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#facc15] hover:text-white transition"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#facc15] hover:text-white transition"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#facc15] hover:text-white transition"
-            >
-              <FaLinkedin />
-            </a>
-          </div>
-        </div>
+      
       </div>
 
       {/* Bottom Line */}

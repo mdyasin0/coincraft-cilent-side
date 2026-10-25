@@ -16,7 +16,7 @@ const Withdrawals = () => {
   // Load user info
   useEffect(() => {
     if (user?.email) {
-      axios.get(`https://coincrafter-chi.vercel.app/user/${user.email}`).then((res) => {
+      axios.get(`https://coincraft-server-side.vercel.app/user/${user.email}`).then((res) => {
         setUserInfo(res.data);
       });
     }
@@ -48,7 +48,7 @@ const Withdrawals = () => {
     };
 
     try {
-      const res = await axios.post("https://coincrafter-chi.vercel.app/withdrawals", withdrawalData);
+      const res = await axios.post("https://coincraft-server-side.vercel.app/withdrawals", withdrawalData);
       if (res.data.insertedId) {
         Swal.fire("Success", "Withdrawal request submitted!", "success");
         // Reset form

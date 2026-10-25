@@ -11,7 +11,7 @@ const ApprovedSubmissions = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://coincrafter-chi.vercel.app/filter_submission?email=${user.email}&status=approved`)
+        .get(`https://coincraft-server-side.vercel.app/filter_submission?email=${user.email}&status=approved`)
         .then((res) => {
           setApprovedSubmissions(res.data);
           setLoading(false);

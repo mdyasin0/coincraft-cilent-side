@@ -31,11 +31,11 @@ const AdminOverviewChart = () => {
       try {
         setLoading(true);
 
-        const resStats = await fetch("https://coincrafter-chi.vercel.app/admin_stats");
+        const resStats = await fetch("https://coincraft-server-side.vercel.app/admin_stats");
         if (!resStats.ok) throw new Error("Failed to fetch admin stats");
         const statsData = await resStats.json();
 
-        const resPayments = await fetch("https://coincrafter-chi.vercel.app/withdrawals/total-payment");
+        const resPayments = await fetch("https://coincraft-server-side.vercel.app/withdrawals/total-payment");
         if (!resPayments.ok) throw new Error("Failed to fetch total payments");
         const paymentsData = await resPayments.json();
 

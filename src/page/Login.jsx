@@ -29,7 +29,7 @@ const Login = () => {
         role: "worker",
       };
 
-      const res = await axios.post("https://coincrafter-chi.vercel.app/google-signin", saveUser);
+      const res = await axios.post("https://coincraft-server-side.vercel.app/google-signin", saveUser);
 
       if (res.data.insertedId || res.data.user) {
         Swal.fire("Success", "User signed in and saved!", "success");

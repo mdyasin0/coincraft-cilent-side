@@ -11,7 +11,7 @@ const MyTaskList = () => {
   const fetchMyTasks = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`https://coincrafter-chi.vercel.app/my-tasks/${user.email}`);
+      const res = await axios.get(`https://coincraft-server-side.vercel.app/my-tasks/${user.email}`);
       setMyTasks(res.data);
     } catch (err) {
       console.error("Failed to fetch tasks", err);
@@ -39,10 +39,10 @@ const MyTaskList = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await axios.delete(`https://coincrafter-chi.vercel.app/delete-task/${taskId}`);
+        await axios.delete(`https://coincraft-server-side.vercel.app/delete-task/${taskId}`);
         if (status !== 'completed') {
           const refillAmount = workers * amount;
-          await axios.patch(`https://coincrafter-chi.vercel.app/refill-coins/${user.email}`, { refill: refillAmount });
+          await axios.patch(`https://coincraft-server-side.vercel.app/refill-coins/${user.email}`, { refill: refillAmount });
         }
         fetchMyTasks();
         Swal.fire('Deleted!', 'Your task has been deleted.', 'success');

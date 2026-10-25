@@ -26,7 +26,7 @@ const CheckoutForm = ({ selectedAmount }) => {
     try {
       // Step 1: Create payment intent
       const res = await axios.post(
-        "https://coincrafter-chi.vercel.app/create-payment-intent",
+        "https://coincraft-server-side.vercel.app/create-payment-intent",
         {
           amount: selectedAmount.price * 100, // Stripe amount in cents
         }
@@ -63,10 +63,10 @@ const CheckoutForm = ({ selectedAmount }) => {
         };
 
         // Save payment history
-        await axios.post("https://coincrafter-chi.vercel.app/payments", paymentData);
+        await axios.post("https://coincraft-server-side.vercel.app/payments", paymentData);
 
         // Update user coin balance
-        await axios.patch(`https://coincrafter-chi.vercel.app/users/coins/${user.email}`, {
+        await axios.patch(`https://coincraft-server-side.vercel.app/users/coins/${user.email}`, {
           coinToAdd: selectedAmount.coins,
         });
 

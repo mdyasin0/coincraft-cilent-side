@@ -17,22 +17,35 @@ const WorkerOverviewChart = () => {
   const [submissions, setSubmissions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user?.email) {
-      axios
-        .get(
-          `https://coincrafter-chi.vercel.app/submissions/worker?email=${user.email}`
-        )
-        .then((res) => {
-          setSubmissions(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Failed to load submissions", err);
-          setLoading(false);
-        });
-    }
-  }, [user]);
+ 
+useEffect(() => {
+  if (!user?.email) {
+    setSubmissions([]);
+    setLoading(false);
+    return;
+  }
+
+  setLoading(true);
+
+  axios
+    .get(
+      `https://coincraft-server-side.vercel.app/submissions/worker/${encodeURIComponent(user.email)}`
+    )
+    .then((res) => {
+      setSubmissions(res.data);
+    })
+    .catch((err) => {
+      console.error(
+        "Failed to load submissions:",
+        err.response?.data || err.message
+      );
+      setSubmissions([]);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}, [user?.email]);
+
 
   if (loading)
     return (

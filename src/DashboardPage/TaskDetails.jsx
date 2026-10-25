@@ -1,4 +1,4 @@
-import{ useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -12,14 +12,14 @@ const TaskDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://coincrafter-chi.vercel.app/tasks/${id}`).then((res) => {
+    axios.get(`https://coincraft-server-side.vercel.app/tasks/${id}`).then((res) => {
       setTask(res.data);
     });
   }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-console.log(user.email);
+    // console.log(user.email);
     const submissionData = {
       task_id: task._id,
       task_title: task.task_title,
@@ -33,28 +33,52 @@ console.log(user.email);
       submission_date: new Date(),
     };
 
-    await axios.post("https://coincrafter-chi.vercel.app/submissions", submissionData);
+    await axios.post("https://coincraft-server-side.vercel.app/submissions", submissionData);
 
-    Swal.fire("Submitted!", "Your task has been submitted for review.", "success");
- navigate("/dashboard/taskreviewforworker"); 
+    Swal.fire(
+      "Submitted!",
+      "Your task has been submitted for review.",
+      "success",
+    );
+    navigate("/dashboard/taskreviewforworker");
     setSubmissionDetails("");
   };
 
-  if (!task) return <div className="flex justify-center items-center h-screen">
-      <span className="loading loading-spinner loading-xl"></span>
-    </div>;
+  if (!task)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-[#0f172a]">{task.task_title}</h2>
-      <p><strong>Buyer:</strong> {task.buyer_name}</p>
-      <p><strong>Deadline:</strong> {task.completion_date}</p>
-      <p><strong>Payable:</strong> ${task.payable_amount}</p>
-      <p><strong>Workers Needed:</strong> {task.required_workers}</p>
-      <p className="mt-2 text-gray-600">{task.description}</p>
+      <h2 className="text-2xl font-bold mb-4 text-[#0f172a]">
+        {task.task_title}
+      </h2>
+      <p>
+        <strong>Buyer:</strong> {task.buyer_name}
+      </p>
+      <p>
+        <strong>Deadline:</strong> {task.completion_date}
+      </p>
+      <p>
+        <strong>Payable:</strong> ${task.payable_amount}
+      </p>
+      <p>
+        <strong>Workers Needed:</strong> {task.required_workers}
+      </p>
+      <p>
+        <strong>submission_info:</strong> {task.submission_info}
+      </p>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-        <label className="block font-medium text-gray-700">Submission Details:</label>
+      <p>
+        <strong>task_detail:</strong> {task.task_detail}
+      </p>
+      <form onSubmit={handleSubmit} className=" space-y-4">
+        <label className="block font-medium text-gray-700">
+          Submit works
+        </label>
         <textarea
           value={submissionDetails}
           onChange={(e) => setSubmissionDetails(e.target.value)}

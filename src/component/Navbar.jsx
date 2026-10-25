@@ -8,17 +8,22 @@ const Navbar = () => {
   const { logOut, user } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  useEffect(() => {
-    if (user?.email) {
-      axios
-        .get(`https://coincrafter-chi.vercel.app/user?email=${user.email}`)
-        .then((res) => {
-          setUserData(res.data); 
-          // console.log("navbar data",res.data);
-        })
-        .catch((err) => console.error("Failed to load user", err));
-    }
-  }, [user]);
+ useEffect(() => {
+  if (user?.email) {
+    axios
+      .get("https://coincraft-server-side.vercel.app/user", {
+        params: { email: user.email }
+      })
+      .then((res) => {
+        // console.log("USER API SUCCESS:", res.data);
+        setUserData(res.data);
+      })
+      .catch((err) => {
+        // console.log("USER API ERROR:", err.response?.status);
+        // console.log("ERROR DETAILS:", err.response?.data);
+      });
+  }
+}, [user?.email]);
 
   const logouthandale = async () => {
     try {
@@ -94,7 +99,7 @@ const Navbar = () => {
                 </NavLink>
 
                 <div className="text-white flex items-center gap-1">
-                  <img className="w-6" src="https://i.ibb.co/PZSBhqZk/coin.png" alt="coin" />
+                  <img className="w-6" src="https://i.ibb.co.com/BHTNp1jB/favicon.png" alt="coin" />
                   {userData?.coin}
                 </div>
               </>
@@ -111,12 +116,7 @@ const Navbar = () => {
               />
             )}
 
-            <NavLink
-              to="https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-mdyasin0"
-              className="text-white hover:text-[#facc15] transition duration-300 bg-[#0284c7] hover:bg-[#0369a1] px-4 py-2 rounded-md"
-            >
-              Join as Developer
-            </NavLink>
+         
 
             {user ? (
               <button
