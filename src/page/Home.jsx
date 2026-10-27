@@ -37,7 +37,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch("https://coincraft-server-side.vercel.app/topuser")
+    fetch("https://coincraft-server-side.onrender.com/topuser")
       .then((res) => res.json())
       .then((data) => {
         setWorkers(data);

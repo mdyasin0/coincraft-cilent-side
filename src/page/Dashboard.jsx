@@ -24,7 +24,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://coincraft-server-side.vercel.app/user?email=${user.email}`)
+        .get(`https://coincraft-server-side.onrender.com/user?email=${user.email}`)
         .then((res) => {
           setUserData(res.data);
           // console.log("navbar data", res.data);

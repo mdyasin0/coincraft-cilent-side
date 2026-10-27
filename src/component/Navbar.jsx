@@ -11,7 +11,7 @@ const Navbar = () => {
  useEffect(() => {
   if (user?.email) {
     axios
-      .get("https://coincraft-server-side.vercel.app/user", {
+      .get("https://coincraft-server-side.onrender.com/user", {
         params: { email: user.email }
       })
       .then((res) => {

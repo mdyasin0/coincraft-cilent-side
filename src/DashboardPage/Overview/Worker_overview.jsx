@@ -29,7 +29,7 @@ useEffect(() => {
 
   axios
     .get(
-      `https://coincraft-server-side.vercel.app/submissions/worker/${encodeURIComponent(user.email)}`
+      `https://coincraft-server-side.onrender.com/submissions/worker/${encodeURIComponent(user.email)}`
     )
     .then((res) => {
       setSubmissions(res.data);

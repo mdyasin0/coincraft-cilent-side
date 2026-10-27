@@ -10,7 +10,7 @@ const ManageUsers = () => {
   const fetchUsers = async () => {
     setIsLoading(true); 
     try {
-      const res = await axios.get("https://coincraft-server-side.vercel.app/alluser");
+      const res = await axios.get("https://coincraft-server-side.onrender.com/alluser");
       setUsers(res.data);
     } catch (err) {
       console.error("Failed to load users", err);
@@ -38,7 +38,7 @@ const ManageUsers = () => {
     if (!result.isConfirmed) return;
 
     try {
-      await axios.delete(`https://coincraft-server-side.vercel.app/delete-user/${email}`);
+      await axios.delete(`https://coincraft-server-side.onrender.com/delete-user/${email}`);
       Swal.fire('Deleted!', 'User removed successfully.', 'success');
       fetchUsers();
     } catch (err) {
@@ -50,7 +50,7 @@ const ManageUsers = () => {
   // Update role
   const handleRoleChange = async (email, newRole) => {
     try {
-      await axios.patch(`https://coincraft-server-side.vercel.app/update-role/${email}`, { role: newRole });
+      await axios.patch(`https://coincraft-server-side.onrender.com/update-role/${email}`, { role: newRole });
       Swal.fire("Updated!", "User role updated successfully.", "success");
       fetchUsers();
     } catch (err) {

@@ -7,7 +7,7 @@ const TaskListForWorker = () => {
   const [sortOrder, setSortOrder] = useState(null); 
 
   useEffect(() => {
-    axios.get("https://coincraft-server-side.vercel.app/alltasks").then((res) => {
+    axios.get("https://coincraft-server-side.onrender.com/alltasks").then((res) => {
       setTasks(res.data);
     });
   }, []);

@@ -12,7 +12,7 @@ const TaskDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://coincraft-server-side.vercel.app/tasks/${id}`).then((res) => {
+    axios.get(`https://coincraft-server-side.onrender.com/tasks/${id}`).then((res) => {
       setTask(res.data);
     });
   }, [id]);
@@ -33,7 +33,7 @@ const TaskDetails = () => {
       submission_date: new Date(),
     };
 
-    await axios.post("https://coincraft-server-side.vercel.app/submissions", submissionData);
+    await axios.post("https://coincraft-server-side.onrender.com/submissions", submissionData);
 
     Swal.fire(
       "Submitted!",

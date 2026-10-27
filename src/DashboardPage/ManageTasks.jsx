@@ -10,7 +10,7 @@ const ManageTasks = () => {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://coincraft-server-side.vercel.app/alltasks");
+      const res = await axios.get("https://coincraft-server-side.onrender.com/alltasks");
       setTasks(res.data);
     } catch (err) {
       console.error("Failed to fetch tasks:", err);
@@ -34,7 +34,7 @@ const ManageTasks = () => {
     if (!result.isConfirmed) return;
 
     try {
-      await axios.delete(`https://coincraft-server-side.vercel.app/delete-task/${id}`);
+      await axios.delete(`https://coincraft-server-side.onrender.com/delete-task/${id}`);
       Swal.fire("Deleted!", "Task has been deleted.", "success");
       fetchTasks();
     } catch (err) {

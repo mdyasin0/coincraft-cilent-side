@@ -31,7 +31,7 @@ const Register = () => {
       });
 
       const userData = { name, email, photoURL, role };
-      const res = await axios.post("https://coincraft-server-side.vercel.app/register-user", userData);
+      const res = await axios.post("https://coincraft-server-side.onrender.com/register-user", userData);
 
       if (res.data.insertedId) {
         Swal.fire("Success", "Registration successful!", "success");

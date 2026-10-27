@@ -25,7 +25,7 @@ const BuyerOverviewChart = () => {
     const fetchBuyerStats = async () => {
       try {
         const res = await axios.get(
-          `https://coincraft-server-side.vercel.app/buyer-stats/${user.email}`
+          `https://coincraft-server-side.onrender.com/buyer-stats/${user.email}`
         );
         setStats(res.data);
         setLoading(false);

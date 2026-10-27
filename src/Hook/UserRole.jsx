@@ -10,7 +10,7 @@ const useUserRole = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`https://coincraft-server-side.vercel.app/user?email=${user.email}`)
+        .get(`https://coincraft-server-side.onrender.com/user?email=${user.email}`)
         .then((res) => {
           setRole(res.data.role);
           // console.log( "data by user role hooks ",res.data.role)
